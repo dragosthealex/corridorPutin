@@ -6,8 +6,17 @@ public class GameManager : MonoBehaviour {
 	public Corridor corridorPrefab;
 	private Corridor corridorInstance;
 
+	// Player prefab
+	public GameObject playerPF;
+
+	//Player
+	public GameObject player;
+
 	private void Start () {
 		BeginGame();
+
+		player = Instantiate(playerPF,corridorInstance.cellList[0].transform.position + Vector3.up,Quaternion.identity) as GameObject;
+
 	}
 	
 	private void Update () {
