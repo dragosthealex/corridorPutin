@@ -4,13 +4,14 @@ using System.Collections;
 public class Bullet : MonoBehaviour {
 
 	void Awake(){
-		Destroy(this,2f);
+		Destroy(this.gameObject,2f);
 		GetComponent<AudioSource>().Play();
 	}
 
 	void OnCollisionEnter  (Collision other){
 
-		Destroy(this);
-
+		Destroy(GetComponent<Renderer>());
+		Destroy(GetComponent<Collider>());
+		Destroy(GetComponent<TrailRenderer>());
 	}
 }
