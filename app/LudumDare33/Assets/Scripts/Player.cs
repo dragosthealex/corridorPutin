@@ -33,20 +33,10 @@ public class Player : MonoBehaviour {
 
 		transform.Rotate(new Vector3(0f,Input.GetAxis("Mouse X"),0f));
 
-		if (Input.GetKeyDown(KeyCode.R) && ammo > 0 && mag < 30){
-
-			GetComponent<AudioSource>().Play();
-
-			ammo = ammo - (30-mag);
-
-			if (ammo > 30)
-				mag = 30;
-			else {
-				mag = ammo;
-				ammo = 0;
-			}
-
+		if (Input.GetKeyDown (KeyCode.R) && ammo > 0 && mag < 30) {
+			Reload ();
 		}
+			
 
 		cam.fieldOfView =Mathf.Clamp(cam.fieldOfView - Input.GetAxis("Mouse ScrollWheel")*20,35,80);
 
@@ -61,4 +51,11 @@ public class Player : MonoBehaviour {
 			nowTime = Time.time + delayTime;
 		}
 	}
+
+	private void Reload() {
+		GetComponent<AudioSource> ().Play ();
+		int ammoToSubstract = 30 - mag;
+		mag = ammo >= ammoToSubstract ? 30 : mag + ammo;
+		ammo = ammo >= ammoToSubstract ? ammo - ammoToSubstract : 0;
+	}// Reload
 }
