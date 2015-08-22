@@ -1,3 +1,15 @@
-Base path: D:/Programs/Unity/Editor/Data
-Pipe name: \\.\pipe\UnityShaderCompiler-64bit-1-6024
+Base path: E:/Developer/Applications/Editor/Data
+Pipe name: \\.\pipe\UnityShaderCompiler-64bit-1-3044
 Cmd: getPlatforms
+Cmd: compileSnippet
+  api=4 type=0 insize=938 outsize=4394 kw=DIRECTIONAL SHADOWS_SCREEN ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=938 outsize=5824 kw=DIRECTIONAL SHADOWS_SCREEN ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1482 outsize=1290 kw=SOFTPARTICLES_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1482 outsize=827 kw=SOFTPARTICLES_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1482 outsize=2038 kw=SOFTPARTICLES_ON ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1482 outsize=1550 kw=SOFTPARTICLES_ON ok=1
