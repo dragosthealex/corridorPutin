@@ -1,13 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CorridorCell.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player.cs">
     <Files>
-      <File FileName="Assets\Scripts\GameManager.cs" Line="21" Column="32" />
-      <File FileName="Assets\Scripts\CorridorCell.cs" Line="22" Column="36" />
-      <File FileName="Assets\Scripts\IntVector2.cs" Line="4" Column="22" />
-      <File FileName="Assets\Scripts\CorridorDirections.cs" Line="40" Column="1" />
-      <File FileName="Assets\Scripts\CorridorDirection.cs" Line="3" Column="21" />
-      <File FileName="Assets\Scripts\Corridor.cs" Line="26" Column="1" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="18" Column="119" />
+      <File FileName="Assets\Scripts\CorridorCell.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\IntVector2.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CorridorDirections.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CorridorDirection.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Corridor.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player.cs" Line="14" Column="93" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
