@@ -6,10 +6,7 @@ public class Corridor : MonoBehaviour {
 	// Size of the grid
 	public IntVector2 size;
 	// A single cell
-	public CorridorCell corridorCellInfundN;
-	public CorridorCell corridorCellCornerN_W;
-	public CorridorCell corridorCellCorridorN_S;
-	public CorridorCell corridorCellWallToE;
+	public CorridorCell cell;
 	
 	// Delay for generation (debug)
 	public float generationStepDelay;
@@ -19,12 +16,14 @@ public class Corridor : MonoBehaviour {
 	// A random coordinate for this corridor
 	public IntVector2 RandomCoordinates {
 		get {
-			return new IntVector2(Random.Range(0, size.x), Random.Range(0, size.z));
+			return new IntVector2(Random.Range(10, size.x-10), Random.Range(10, size.z-10));
 		}
 	}
 
 	// The grid
 	private CorridorCell[,] cells;
+	// Dictionary with the generated cells
+	private ArrayList cellList = new ArrayList();
 	
 	// Use this for initialization
 	void Start () {
@@ -49,52 +48,106 @@ public class Corridor : MonoBehaviour {
 	public void Generate() {
 		cells = new CorridorCell[size.x, size.z];
 		bool turned = false, turnedRecently = false;
-		IntVector2 coordinates = RandomCoordinates;
-		CorridorDirection nextDirectionName = CorridorDirections.RandomValue;
-		CorridorDirection lastDirectionName = nextDirectionName;
-		IntVector2 nextDirection = nextDirectionName.ToIntVector2();
+		// Current coordinates, initialised with -1, -1
+		IntVector2 currentCoordinates;
+		// Coordinates to generate the next cell on
+		IntVector2 nextCoordinates = RandomCoordinates;
+		// The direction to generate the next cell to
+		CorridorDirection nextDirection = CorridorDirections.RandomValue;
+		// Direction of the current cell
+		CorridorDirection currentDirection = nextDirection;
 
-		while (ContainsCoordinates(coordinates) && GetCell(coordinates) == null) {
-			CreateCell(coordinates, lastDirectionName, nextDirectionName);
+		CreateFirstCell (nextCoordinates, nextDirection);
+		currentCoordinates = nextCoordinates;
+		currentDirection = nextDirection;
+
+		// Generate the cells
+		while(true) {
+
 			turned = false;
-			if(Random.Range(0, 100) < cornerProbability && !turnedRecently) {
-				nextDirectionName = CorridorDirections.RandomValue;
-				while(nextDirectionName == CorridorDirections.OppositeOf(lastDirectionName)) {
-					nextDirectionName = CorridorDirections.RandomValue;
-				}
-				lastDirectionName = nextDirectionName;
-				nextDirection = nextDirectionName.ToIntVector2();
+			// Check if change direction or not
+			if(Random.Range(0, 100) > cornerProbability && !turnedRecently) {
+				// Try random direction. If wrong, try until right
+				nextDirection = CorridorDirections.RandomValue;
+				while (nextDirection == CorridorDirections.OppositeOf(currentDirection)) {
+					nextDirection = CorridorDirections.RandomValue;
+				}// while
 				turned = true;
 			}// if
+			else {
+				nextDirection = currentDirection;
+			}
 			turnedRecently = turned;
-			coordinates += nextDirection;
+			nextCoordinates += currentDirection.ToIntVector2();
+
+			if(!(ContainsCoordinates(nextCoordinates) && GetCell(nextCoordinates) == null)) {
+				break;
+			}
+			CreateCell(nextCoordinates, currentDirection, nextDirection);
+			currentDirection = nextDirection;
+			currentCoordinates = nextCoordinates;
+
+//			// Create the cell
+//			CreateCell(nextCoordinates, currentDirection, nextDirection);
+//			// Set the current coordinates
+//			currentCoordinates = nextCoordinates;
+//			currentDirection = nextDirection;
+//			// Get the current cell and add it to arrayList
+//			cellList.Add(GetCell (currentCoordinates));
+//
+//			turned = false;
+//			// Check if change direction or not
+//			if(Random.Range(0, 100) > cornerProbability && !turnedRecently) {
+//				// Try random direction. If wrong, try until right
+//				nextDirection = CorridorDirections.RandomValue;
+//				while (nextDirection == CorridorDirections.OppositeOf(currentDirection)) {
+//					nextDirection = CorridorDirections.RandomValue;
+//				}// while
+//				turned = true;
+//			}// if
+//			else {
+//				nextDirection = currentDirection;
+//			}
+//
+//			turnedRecently = turned;
+//			nextCoordinates = currentCoordinates + (nextDirection.ToIntVector2());
 		}// while
 	}// generate
 
+	// Create the first cell (speshal)
+	private void CreateFirstCell(IntVector2 nextCoordinates, CorridorDirection nextDirection) {
+		CorridorCell newCell;
+		newCell = Instantiate (cell) as CorridorCell;
+		newCell.PointTo (nextDirection);
+		cells [nextCoordinates.x, nextCoordinates.z] = newCell;
+		newCell.material.color = new Color (Random.Range (0f, 1f), Random.Range (0f, 1f), Random.Range (0f, 1f));
+		newCell.name = "First Cell " + nextCoordinates.x + ", " + nextCoordinates.z;
+		newCell.transform.parent = transform;
+		newCell.transform.localPosition = new Vector3 (nextCoordinates.x - size.x * 0.5f + 0.5f, 
+		                                               0f, nextCoordinates.z - size.z * 0.5f + 0.5f);
+	}// createFirstCell
+
 	// Create a single corridor cell
-	private void CreateCell (IntVector2 coordinates, CorridorDirection lastDirection, CorridorDirection direction) {
+	private void CreateCell (IntVector2 nextCoordinates, CorridorDirection currentDirection, CorridorDirection nextDirection) {
 		// Cell's neighbors
-		CorridorCell north = GetCell (new IntVector2(coordinates.x, coordinates.z + 1));
-		CorridorCell south = GetCell (new IntVector2(coordinates.x, coordinates.z - 1));
-		CorridorCell east = GetCell (new IntVector2(coordinates.x + 1, coordinates.z));
-		CorridorCell west = GetCell (new IntVector2(coordinates.x - 1, coordinates.z));
+		CorridorCell north = GetCell (new IntVector2(nextCoordinates.x, nextCoordinates.z + 1));
+		CorridorCell south = GetCell (new IntVector2(nextCoordinates.x, nextCoordinates.z - 1));
+		CorridorCell east = GetCell (new IntVector2(nextCoordinates.x + 1, nextCoordinates.z));
+		CorridorCell west = GetCell (new IntVector2(nextCoordinates.x - 1, nextCoordinates.z));
 
 		// The new cell
 		CorridorCell newCell;
-		// If the first cell
-		if (north == null && south == null && east == null && west == null) {
-			newCell = Instantiate (corridorCellInfundN) as CorridorCell;
-			newCell.PointFromTo (lastDirection, direction);
-		} else {
-			newCell = Instantiate (corridorCellCorridorN_S) as CorridorCell;
-			newCell.PointFromTo (lastDirection, direction);
-		}
-		cells [coordinates.x, coordinates.z] = newCell;
+		Debug.Log ("###Corridor Cell " + nextCoordinates.x + ", " + nextCoordinates.z);
+		newCell = Instantiate (cell) as CorridorCell;
+		newCell.PointFromTo (currentDirection, nextDirection);
+		Debug.Log ("--------------------------");
+
+		cells [nextCoordinates.x, nextCoordinates.z] = newCell;
 		newCell.material.color = new Color (Random.Range (0f, 1f), Random.Range (0f, 1f), Random.Range (0f, 1f));
-		newCell.name = "Corridor Cell " + coordinates.x + ", " + coordinates.z;
+		newCell.name = "Corridor Cell " + nextCoordinates.x + ", " + nextCoordinates.z;
 		newCell.transform.parent = transform;
-		newCell.transform.localPosition = new Vector3 (coordinates.x - size.x * 0.5f + 0.5f, 
-		                                               0f, coordinates.z - size.z * 0.5f + 0.5f);
+		newCell.transform.localPosition = new Vector3 (nextCoordinates.x - size.x * 0.5f + 0.5f, 
+		                                               0f, nextCoordinates.z - size.z * 0.5f + 0.5f);
 	}// createCell
 
 	// Checks whether the given coordinates is whithin the corridor
