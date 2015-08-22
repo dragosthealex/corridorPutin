@@ -89,31 +89,6 @@ public class Corridor : MonoBehaviour {
 			cellList.Add(GetCell (currentCoordinates));
 			currentDirection = nextDirection;
 			currentCoordinates = nextCoordinates;
-
-//			// Create the cell
-//			CreateCell(nextCoordinates, currentDirection, nextDirection);
-//			// Set the current coordinates
-//			currentCoordinates = nextCoordinates;
-//			currentDirection = nextDirection;
-//			// Get the current cell and add it to arrayList
-//			cellList.Add(GetCell (currentCoordinates));
-//
-//			turned = false;
-//			// Check if change direction or not
-//			if(Random.Range(0, 100) > cornerProbability && !turnedRecently) {
-//				// Try random direction. If wrong, try until right
-//				nextDirection = CorridorDirections.RandomValue;
-//				while (nextDirection == CorridorDirections.OppositeOf(currentDirection)) {
-//					nextDirection = CorridorDirections.RandomValue;
-//				}// while
-//				turned = true;
-//			}// if
-//			else {
-//				nextDirection = currentDirection;
-//			}
-//
-//			turnedRecently = turned;
-//			nextCoordinates = currentCoordinates + (nextDirection.ToIntVector2());
 		}// while
 	}// generate
 
@@ -123,7 +98,6 @@ public class Corridor : MonoBehaviour {
 		newCell = Instantiate (cell) as CorridorCell;
 		newCell.PointTo (nextDirection);
 		cells [nextCoordinates.x, nextCoordinates.z] = newCell;
-	//	newCell.material.color = new Color (Random.Range (0f, 1f), Random.Range (0f, 1f), Random.Range (0f, 1f));
 		newCell.name = "First Cell " + nextCoordinates.x + ", " + nextCoordinates.z;
 		newCell.transform.parent = transform;
 		newCell.transform.localPosition = new Vector3 (nextCoordinates.x - size.x * 0.5f + 0.5f, 

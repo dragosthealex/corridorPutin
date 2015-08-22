@@ -28,29 +28,32 @@ public class Player : MonoBehaviour {
 //		if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey (KeyCode.A) || Input.GetKey(KeyCode.D)) && !GetComponent<AudioSource>().isPlaying)
 //			GetComponent<AudioSource>().Play();
 
-		transform.Translate (new Vector3 (Input.GetAxis ("Horizontal") * speed * Time.deltaTime, 0f, 
-		                                  Input.GetAxis ("Vertical") * speed * Time.deltaTime));
 
-		transform.Rotate(new Vector3(0f,Input.GetAxis("Mouse X"),0f));
 
+		// Reload
 		if (Input.GetKeyDown (KeyCode.R) && ammo > 0 && mag < 30) {
 			Reload ();
 		}
-			
 
+		// Zoom
 		cam.fieldOfView =Mathf.Clamp(cam.fieldOfView - Input.GetAxis("Mouse ScrollWheel")*20,35,80);
 
-
+		// Shoot i guess
 		if (Input.GetKey (KeyCode.Mouse0) && nowTime < Time.time && mag > 0){
 
 			bulIns = Instantiate(bul,bar.transform.position,Quaternion.identity) as GameObject;
 			bulIns.GetComponent<Rigidbody>().AddForceAtPosition(bar.transform.right*100,transform.position,ForceMode.Impulse);
-
 			mag--;
-
 			nowTime = Time.time + delayTime;
+		}// if
+
+		if (Input.GetKey (KeyCode.Q)) {
+			FindObjectOfType<Camera> ().gameObject.transform.RotateAround (transform.position, Vector3.up, -1f);
 		}
-	}
+		if (Input.GetKey (KeyCode.E)) {
+			FindObjectOfType<Camera> ().gameObject.transform.RotateAround (transform.position, Vector3.up, 1f);
+		}
+	}// update
 
 	private void Reload() {
 		GetComponent<AudioSource> ().Play ();
