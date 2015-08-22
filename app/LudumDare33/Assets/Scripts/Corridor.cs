@@ -123,7 +123,7 @@ public class Corridor : MonoBehaviour {
 		newCell = Instantiate (cell) as CorridorCell;
 		newCell.PointTo (nextDirection);
 		cells [nextCoordinates.x, nextCoordinates.z] = newCell;
-		newCell.material.color = new Color (Random.Range (0f, 1f), Random.Range (0f, 1f), Random.Range (0f, 1f));
+	//	newCell.material.color = new Color (Random.Range (0f, 1f), Random.Range (0f, 1f), Random.Range (0f, 1f));
 		newCell.name = "First Cell " + nextCoordinates.x + ", " + nextCoordinates.z;
 		newCell.transform.parent = transform;
 		newCell.transform.localPosition = new Vector3 (nextCoordinates.x - size.x * 0.5f + 0.5f, 
@@ -148,7 +148,7 @@ public class Corridor : MonoBehaviour {
 		Debug.Log ("--------------------------");
 
 		cells [nextCoordinates.x, nextCoordinates.z] = newCell;
-		newCell.material.color = new Color (Random.Range (0f, 1f), Random.Range (0f, 1f), Random.Range (0f, 1f));
+		//newCell.material.color = new Color (Random.Range (0f, 1f), Random.Range (0f, 1f), Random.Range (0f, 1f));
 		newCell.name = "Corridor Cell " + nextCoordinates.x + ", " + nextCoordinates.z;
 		newCell.transform.parent = transform;
 		newCell.transform.localPosition = new Vector3 (nextCoordinates.x - size.x * 0.5f + 0.5f, 

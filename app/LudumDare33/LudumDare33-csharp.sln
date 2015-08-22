@@ -1,7 +1,11 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
+Project("{453C48DD-BA37-8BBE-C7D0-BCBEB567B430}") = "LudumDare33", "Assembly-CSharp-firstpass-vs.csproj", "{4E26761A-68B3-AD46-DB0E-1DAAF6CA943E}"
+EndProject
 Project("{453C48DD-BA37-8BBE-C7D0-BCBEB567B430}") = "LudumDare33", "Assembly-CSharp-vs.csproj", "{493573FD-4148-D5EC-EF69-24B0D2F0639A}"
+EndProject
+Project("{453C48DD-BA37-8BBE-C7D0-BCBEB567B430}") = "LudumDare33", "Assembly-CSharp-Editor-vs.csproj", "{6E134A2A-01ED-6A69-0946-867B9D38EE14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,19 +13,31 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E26761A-68B3-AD46-DB0E-1DAAF6CA943E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E26761A-68B3-AD46-DB0E-1DAAF6CA943E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E26761A-68B3-AD46-DB0E-1DAAF6CA943E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E26761A-68B3-AD46-DB0E-1DAAF6CA943E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{493573FD-4148-D5EC-EF69-24B0D2F0639A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{493573FD-4148-D5EC-EF69-24B0D2F0639A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{493573FD-4148-D5EC-EF69-24B0D2F0639A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{493573FD-4148-D5EC-EF69-24B0D2F0639A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E134A2A-01ED-6A69-0946-867B9D38EE14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E134A2A-01ED-6A69-0946-867B9D38EE14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E134A2A-01ED-6A69-0946-867B9D38EE14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E134A2A-01ED-6A69-0946-867B9D38EE14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 <<<<<<< HEAD
+<<<<<<< HEAD
 																											GlobalSection(MonoDevelopProperties) = preSolution
 =======
 																															GlobalSection(MonoDevelopProperties) = preSolution
 >>>>>>> 82437924b5573b66857f5d0b2afad32c138b9f18
+=======
+																																		GlobalSection(MonoDevelopProperties) = preSolution
+>>>>>>> 754544bdc401a10cfae23c67a5c1eefcf2ff5d5d
 =======
 																		GlobalSection(MonoDevelopProperties) = preSolution
 >>>>>>> 41d6746eebb22ea92a501c61c91eceb5179989e1

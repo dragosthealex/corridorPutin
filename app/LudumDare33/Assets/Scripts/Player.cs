@@ -33,7 +33,7 @@ public class Player : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.R) && ammo > 0 && mag < 30){
 
-			ammo = ammo - (30-mag);
+
 
 			if (ammo > 30)
 				mag = 30;
@@ -41,6 +41,8 @@ public class Player : MonoBehaviour {
 				mag = ammo;
 				ammo = 0;
 			}
+
+			ammo = ammo - (30-mag);
 		}
 
 		cam.fieldOfView =Mathf.Clamp(cam.fieldOfView - Input.GetAxis("Mouse ScrollWheel")*20,35,80);
