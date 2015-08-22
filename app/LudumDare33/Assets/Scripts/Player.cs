@@ -16,7 +16,7 @@ public class Player : MonoBehaviour {
 
 	public float nowTime, delayTime;
 
-
+	public Camera cam;
 
 
 
@@ -43,10 +43,10 @@ public class Player : MonoBehaviour {
 			}
 		}
 
+		cam.fieldOfView =Mathf.Clamp(cam.fieldOfView - Input.GetAxis("Mouse ScrollWheel")*20,35,80);
+
 
 		if (Input.GetKey (KeyCode.Mouse0) && nowTime < Time.time && mag > 0){
-
-			GetComponent<AudioSource>().Play();
 
 			bulIns = Instantiate(bul,bar.transform.position,Quaternion.identity) as GameObject;
 			bulIns.GetComponent<Rigidbody>().AddForceAtPosition(bar.transform.right*100,transform.position,ForceMode.Impulse);
