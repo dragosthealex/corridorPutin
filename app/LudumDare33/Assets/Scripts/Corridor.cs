@@ -66,7 +66,7 @@ public class Corridor : MonoBehaviour {
 
 			turned = false;
 			// Check if change direction or not
-			if(Random.Range(0, 100) > cornerProbability && !turnedRecently) {
+			if(Random.Range(0, 100) < cornerProbability && !turnedRecently) {
 				// Try random direction. If wrong, try until right
 				nextDirection = CorridorDirections.RandomValue;
 				while (nextDirection == CorridorDirections.OppositeOf(currentDirection)) {

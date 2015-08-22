@@ -3,11 +3,11 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CorridorCell.cs">
     <Files>
       <File FileName="Assets\Scripts\GameManager.cs" Line="21" Column="32" />
-      <File FileName="Assets\Scripts\Corridor.cs" Line="102" Column="3" />
-      <File FileName="Assets\Scripts\CorridorCell.cs" Line="20" Column="53" />
+      <File FileName="Assets\Scripts\CorridorCell.cs" Line="22" Column="36" />
       <File FileName="Assets\Scripts\IntVector2.cs" Line="4" Column="22" />
       <File FileName="Assets\Scripts\CorridorDirections.cs" Line="40" Column="1" />
       <File FileName="Assets\Scripts\CorridorDirection.cs" Line="3" Column="21" />
+      <File FileName="Assets\Scripts\Corridor.cs" Line="26" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
