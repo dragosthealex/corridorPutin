@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Corridor : MonoBehaviour {
 
@@ -23,8 +24,9 @@ public class Corridor : MonoBehaviour {
 	// The grid
 	private CorridorCell[,] cells;
 	// Dictionary with the generated cells
-	private ArrayList cellList = new ArrayList();
-	
+	//private  ArrayList cellList = new ArrayList();
+	public List<CorridorCell> cellList = new List<CorridorCell>();
+
 	// Use this for initialization
 	void Start () {
 	
@@ -84,6 +86,7 @@ public class Corridor : MonoBehaviour {
 				break;
 			}
 			CreateCell(nextCoordinates, currentDirection, nextDirection);
+			cellList.Add(GetCell (currentCoordinates));
 			currentDirection = nextDirection;
 			currentCoordinates = nextCoordinates;
 
@@ -125,6 +128,8 @@ public class Corridor : MonoBehaviour {
 		newCell.transform.parent = transform;
 		newCell.transform.localPosition = new Vector3 (nextCoordinates.x - size.x * 0.5f + 0.5f, 
 		                                               0f, nextCoordinates.z - size.z * 0.5f + 0.5f);
+
+		cellList.Add(newCell);
 	}// createFirstCell
 
 	// Create a single corridor cell
