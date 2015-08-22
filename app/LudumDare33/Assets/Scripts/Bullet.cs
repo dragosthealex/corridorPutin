@@ -7,4 +7,10 @@ public class Bullet : MonoBehaviour {
 		Destroy(this,2f);
 		GetComponent<AudioSource>().Play();
 	}
+
+	void OnCollisionEnter  (Collision other){
+
+		Destroy(this);
+
+	}
 }
