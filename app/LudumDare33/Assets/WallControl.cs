@@ -15,10 +15,10 @@ public class WallControl : MonoBehaviour {
 
 	void OnCollisionEnter (Collision col)
 	{
-		if(col.gameObject.name == "putin")
+		if(door && col.gameObject.name == "putin")
 		{
-			Destroy(col.gameObject);
-			Destroy(FindObjectOfType<Corridor>());
+			Destroy(FindObjectOfType<Player>().gameObject);
+			Destroy(FindObjectOfType<Corridor>().gameObject);
 			FindObjectOfType<GameManager>().newRoom();
 		}
 	}
