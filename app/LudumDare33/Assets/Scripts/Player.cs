@@ -4,6 +4,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
+	public Transform putinTrans;
 
 	//  ENJOY THE LEGACY CODE
 
@@ -47,11 +48,22 @@ public class Player : MonoBehaviour {
 			nowTime = Time.time + delayTime;
 		}// if
 
+		if (Input.GetKeyDown(KeyCode.Z))
+			FindObjectOfType<Camera>().gameObject.transform.LookAt(putinTrans.position);
+
+
 		if (Input.GetKey (KeyCode.Q)) {
+<<<<<<< HEAD
 			FindObjectOfType<Camera> ().gameObject.transform.RotateAround (FindObjectOfType<TurnPutin>().gameObject.transform.position, Vector3.up, -1f);
 		}
 		if (Input.GetKey (KeyCode.E)) {
 			FindObjectOfType<Camera> ().gameObject.transform.RotateAround (FindObjectOfType<TurnPutin>().gameObject.transform.position, Vector3.up, 1f);
+=======
+			FindObjectOfType<Camera> ().gameObject.transform.RotateAround (putinTrans.position, Vector3.up, -1f);
+		}
+		if (Input.GetKey (KeyCode.E)) {
+			FindObjectOfType<Camera> ().gameObject.transform.RotateAround (putinTrans.position, Vector3.up, 1f);
+>>>>>>> 1e3dd63bd792daef1a7a3a99a23d8f32a8d5c4e0
 		}
 	}// update
 

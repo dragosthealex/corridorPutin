@@ -1,9 +1,17 @@
 ﻿<Properties>
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workspace />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\TurnPutin.cs">
     <Files>
       <File FileName="Assets\TurnPutin.cs" Line="38" Column="9" />
       <File FileName="Assets\Scripts\Player.cs" Line="54" Column="126" />
+=======
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\TurnPutin.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Player.cs" Line="45" Column="58" />
+      <File FileName="Assets\TurnPutin.cs" Line="30" Column="54" />
+>>>>>>> 1e3dd63bd792daef1a7a3a99a23d8f32a8d5c4e0
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
