@@ -15,8 +15,12 @@ public abstract class GenericRoom : MonoBehaviour {
 	public GameObject[] furniture;
 	public RoomCell cell;
 	public RoomCell[] doors;
+<<<<<<< HEAD
 	public IntVector2 spawn;
 
+=======
+	
+>>>>>>> 051160acba6293865d108518c7ba936fbfad15a5
 	// Generates the grid
 	protected void GenerateGrid() {
 		for (int i = 0; i<= size.x; i++) {
@@ -30,11 +34,11 @@ public abstract class GenericRoom : MonoBehaviour {
 			}
 		}
 	}// Generate
-
+	
 	public RoomCell GetCellAt(IntVector2 coords) {
 		return tileGrid[coords.x, coords.z];
 	}// getcellat
-
+	
 	// Randomise the doors, and also the enter door (spawn point in this room)
 	protected RoomCell[] GetDoors() {
 		// Number of doors
@@ -43,6 +47,7 @@ public abstract class GenericRoom : MonoBehaviour {
 		RoomCell[] doors = new RoomCell[numberOfDoors];
 		
 		while (numberOfDoors > 0) {
+<<<<<<< HEAD
 			IntVector2 coords = new IntVector2 (size.x, Random.Range (2, size.z - 2));
 			doors [--numberOfDoors] = GetCellAt (coords);
 			Debug.Log ("++++++++++++++");
@@ -60,3 +65,20 @@ public abstract class GenericRoom : MonoBehaviour {
 		return spawn;
 	}
 }// class
+=======
+			IntVector2 coords = new IntVector2(size.x, Random.Range (2, size.z-2));
+			doors[--numberOfDoors] = GetCellAt(coords);
+			Debug.Log("++++++++++++++");
+			Debug.Log("x: " + size.x + ", z" + size.z);
+			Debug.Log("noDoors: " + numberOfDoors);
+		}
+		
+		// If this is the spawn door
+		if(spawnDoor == numberOfDoors) {
+			FindObjectOfType<GameManager>().player = Instantiate(FindObjectOfType<GameManager>().playerPF,doors[spawnDoor].transform.position 
+			                                                     + Vector3.up,Quaternion.identity) as GameObject;
+		}// if
+		return doors;
+	}// getDoors
+}// class
+>>>>>>> 051160acba6293865d108518c7ba936fbfad15a5
