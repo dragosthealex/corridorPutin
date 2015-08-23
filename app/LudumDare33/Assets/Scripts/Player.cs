@@ -48,10 +48,10 @@ public class Player : MonoBehaviour {
 		}// if
 
 		if (Input.GetKey (KeyCode.Q)) {
-			FindObjectOfType<Camera> ().gameObject.transform.RotateAround (transform.position, Vector3.up, -1f);
+			FindObjectOfType<Camera> ().gameObject.transform.RotateAround (FindObjectOfType<TurnPutin>().gameObject.transform.position, Vector3.up, -1f);
 		}
 		if (Input.GetKey (KeyCode.E)) {
-			FindObjectOfType<Camera> ().gameObject.transform.RotateAround (transform.position, Vector3.up, 1f);
+			FindObjectOfType<Camera> ().gameObject.transform.RotateAround (FindObjectOfType<TurnPutin>().gameObject.transform.position, Vector3.up, 1f);
 		}
 	}// update
 
