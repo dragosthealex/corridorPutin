@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void newRoom() {
-		int randomRoom = Random.Range (1, 2);
+		int randomRoom = Random.Range (0, 2);
 
 		switch (randomRoom) {
 		case 0:
