@@ -2,12 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Corridor : MonoBehaviour {
+public class Corridor : GenericRoom {
 
 	// Size of the grid
 	public IntVector2 size;
 	// A single cell
-	public CorridorCell cell;
+	public CorridorCell corridorCell;
 	
 	// Delay for generation (debug)
 	public float generationStepDelay;
@@ -95,7 +95,7 @@ public class Corridor : MonoBehaviour {
 	// Create the first cell (speshal)
 	private void CreateFirstCell(IntVector2 nextCoordinates, CorridorDirection nextDirection) {
 		CorridorCell newCell;
-		newCell = Instantiate (cell) as CorridorCell;
+		newCell = Instantiate (corridorCell) as CorridorCell;
 		newCell.PointTo (nextDirection);
 		cells [nextCoordinates.x, nextCoordinates.z] = newCell;
 		newCell.name = "First Cell " + nextCoordinates.x + ", " + nextCoordinates.z;
@@ -104,6 +104,9 @@ public class Corridor : MonoBehaviour {
 		                                               0f, nextCoordinates.z - size.z * 0.5f + 0.5f);
 
 		cellList.Add(newCell);
+
+		// Set spawn point as this cell
+		spawn = new IntVector2 ((int)newCell.transform.position.x, (int)newCell.transform.position.z);
 	}// createFirstCell
 
 	// Create a single corridor cell
@@ -117,7 +120,7 @@ public class Corridor : MonoBehaviour {
 		// The new cell
 		CorridorCell newCell;
 		Debug.Log ("###Corridor Cell " + nextCoordinates.x + ", " + nextCoordinates.z);
-		newCell = Instantiate (cell) as CorridorCell;
+		newCell = Instantiate (corridorCell) as CorridorCell;
 		newCell.PointFromTo (currentDirection, nextDirection);
 		Debug.Log ("--------------------------");
 

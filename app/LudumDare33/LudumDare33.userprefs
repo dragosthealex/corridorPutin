@@ -1,4 +1,5 @@
 ﻿<Properties>
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameManager.cs">
     <Files>
@@ -12,6 +13,17 @@
       <File FileName="Assets\Scripts\CorridorDirections.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\CorridorCell.cs" Line="32" Column="46" />
       <File FileName="Assets\Scripts\GameManager.cs" Line="20" Column="3" />
+=======
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameManager.cs">
+    <Files>
+      <File FileName="Assets\Scripts\GenericRoom.cs" Line="85" Column="1" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="56" Column="67" />
+      <File FileName="Assets\Scripts\Player.cs" Line="47" Column="4" />
+      <File FileName="Assets\WallControl.cs" Line="20" Column="4" />
+      <File FileName="Assets\Scripts\Corridor.cs" Line="107" Column="3" />
+      <File FileName="Assets\Scripts\ConferenceRoom.cs" Line="23" Column="54" />
+>>>>>>> 1aeacbfcc220ba362ecefc00743292e51ae91570
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
