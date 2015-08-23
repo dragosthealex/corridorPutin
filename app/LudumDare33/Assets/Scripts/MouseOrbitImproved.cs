@@ -41,7 +41,7 @@ public class MouseOrbitImproved : MonoBehaviour {
 		if (target) 
 		{
 			x += Input.GetAxis("Mouse X") * xSpeed * distance * 0.02f;
-			y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
+			y -= Input.GetAxis("Mouse Y") * ySpeed * 0.01f;
 			
 			y = ClampAngle(y, yMinLimit, yMaxLimit);
 			
@@ -58,7 +58,7 @@ public class MouseOrbitImproved : MonoBehaviour {
 			Vector3 position = rotation * negDistance + target.position;
 			
 			transform.rotation = rotation;
-			transform.position = position;
+			//transform.position = position;
 		}
 	}
 	
