@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour {
 	public Corridor corridorPrefab;
 	public ConferenceRoom conferenceRoomPrefab;
 	private Corridor corridorInstance;
+	private ConferenceRoom conferenceRoomInstance;
 
 	// Player prefab
 	public GameObject playerPF;
@@ -36,16 +37,22 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void newRoom() {
-		int randomRoom = Random.Range (0, 0);
+		int randomRoom = Random.Range (0, 2);
 
 		switch (randomRoom) {
 		case 0:
 			// Another corridor
-			Start ();
+			corridorInstance = Instantiate (corridorPrefab) as Corridor;
+			corridorInstance.Generate();
+			FindObjectOfType<Player> ().gameObject.transform.position = new Vector3(
+				corridorInstance.GetSpawn ().x, 1f, corridorInstance.GetSpawn ().z);
 			break;
 		case 1:
-			ConferenceRoom room = Instantiate (conferenceRoomPrefab) as ConferenceRoom;
+			conferenceRoomInstance = Instantiate (conferenceRoomPrefab) as ConferenceRoom;
+			FindObjectOfType<Player> ().gameObject.transform.position = new Vector3( 
+			    conferenceRoomInstance.GetSpawn ().x, 1f, conferenceRoomInstance.GetSpawn ().z);
 			break;
 		}
+		FindObjectOfType<TurnPutin>().gameObject.transform.localPosition = new Vector3(0f, 1f, 0f);
 	}
 }
