@@ -72,9 +72,6 @@ public class Player : MonoBehaviour {
 			nowTime = Time.time + delayTime;
 		}// if
 
-//		if (Input.GetKeyDown(KeyCode.Z))
-//			FindObjectOfType<Camera>().gameObject.transform.LookAt(putinTrans.position);
-
 
 		if (Input.GetKey (KeyCode.Q)) {
 			FindObjectOfType<Camera> ().gameObject.transform.RotateAround (putinTrans.position, Vector3.up, -1f);
