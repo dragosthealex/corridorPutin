@@ -34,6 +34,13 @@ public abstract class GenericRoom : MonoBehaviour {
 		}
 	}// Generate
 
+<<<<<<< HEAD
+=======
+	public RoomCell GetCellAt(IntVector2 coords) {
+		return tileGrid[coords.x, coords.z];
+	}// getcellat
+
+>>>>>>> 21d51e9587acf7f2113f27e1b69de37119bfcfe8
 	// Randomise the doors, and also the enter door (spawn point in this room)
 	protected  RoomCell[] GetDoors() {
 		// Number of doors
@@ -49,6 +56,7 @@ public abstract class GenericRoom : MonoBehaviour {
 	        Debug.Log("noDoors: " + numberOfDoors);
 		}
 
+<<<<<<< HEAD
 			// If this is the spawn door
 			if(spawnDoor == numberOfDoors) {
 				FindObjectOfType<GameManager>().player = Instantiate(FindObjectOfType<GameManager>().playerPF,doors[spawnDoor].transform.position  + Vector3.up,Quaternion.identity) as GameObject;
@@ -57,4 +65,13 @@ public abstract class GenericRoom : MonoBehaviour {
 		return doors;
 	}// getDoors
 
+=======
+		// If this is the spawn door
+		if(spawnDoor == numberOfDoors) {
+			FindObjectOfType<GameManager>().player = Instantiate(FindObjectOfType<GameManager>().playerPF,doors[spawnDoor].transform.position 
+			                                                     + Vector3.up,Quaternion.identity) as GameObject;
+		}// if
+	return doors;
+	}// getDoors
+>>>>>>> 21d51e9587acf7f2113f27e1b69de37119bfcfe8
 }// class
