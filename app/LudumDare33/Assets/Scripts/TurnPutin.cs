@@ -36,11 +36,6 @@ public class TurnPutin : MonoBehaviour {
 			transform.LookAt(transform.position + playerToMouse, Vector3.up);
 			
 		}// if
-<<<<<<< HEAD:app/LudumDare33/Assets/Scripts/TurnPutin.cs
-		Camera.main.gameObject.transform.position = transform.position + new Vector3(0f, 32.1f, -9f);
-=======
-
 		Camera.main.gameObject.transform.position = transform.position + new Vector3(0f, 32.1f, 0f);
->>>>>>> 1e3dd63bd792daef1a7a3a99a23d8f32a8d5c4e0:app/LudumDare33/Assets/Scripts/TurnPutin.cs
 	}// turning
 }

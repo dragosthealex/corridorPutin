@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class CorridorCell : MonoBehaviour {
 
+	// The probability of door per a given wall
+	public int wallDoorProbability;
 	// The coordinates of this cell
 	public IntVector2 coordinates;
 	// The material
@@ -63,5 +65,16 @@ public class CorridorCell : MonoBehaviour {
 		} else if (to == CorridorDirection.West) {
 			walls [3].SetActive (false);
 		}
+
+		// Generate the door
+		foreach (GameObject wall in walls) {
+			if(wall.activeSelf){
+				if(Random.Range(0, 100) < wallDoorProbability) {
+					// Generate new door
+					wall.GetComponent<WallControl>().door = true;
+					wall.GetComponent<MeshRenderer>().material.color = Color.blue;
+				}
+			}// if
+		}// foreach
 	}// point from to
 }
