@@ -38,21 +38,22 @@ public class GameManager : MonoBehaviour {
 
 	public void newRoom() {
 		int randomRoom = Random.Range (0, 2);
-
+		Transform putinTransform = FindObjectOfType<TurnPutin> ().gameObject.transform;
 		switch (randomRoom) {
 		case 0:
 			// Another corridor
 			corridorInstance = Instantiate (corridorPrefab) as Corridor;
 			corridorInstance.Generate();
 			FindObjectOfType<Player> ().gameObject.transform.position = new Vector3(
-				corridorInstance.GetSpawn ().x, 1f, corridorInstance.GetSpawn ().z);
+				corridorInstance.GetSpawn ().x, 0f, corridorInstance.GetSpawn ().z);
+			putinTransform.localPosition = new Vector3(0f, 0f, 0f);
 			break;
 		case 1:
 			conferenceRoomInstance = Instantiate (conferenceRoomPrefab) as ConferenceRoom;
 			FindObjectOfType<Player> ().gameObject.transform.position = new Vector3( 
-			    conferenceRoomInstance.GetSpawn ().x, 1f, conferenceRoomInstance.GetSpawn ().z);
+			    conferenceRoomInstance.GetSpawn ().x, 0f, conferenceRoomInstance.GetSpawn ().z);
+			putinTransform.localPosition = new Vector3(0f, -14f, 0f);
 			break;
 		}
-		FindObjectOfType<TurnPutin>().gameObject.transform.localPosition = new Vector3(0f, 0f, 0f);
 	}
 }

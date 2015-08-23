@@ -16,6 +16,7 @@ public abstract class GenericRoom : MonoBehaviour {
 	public RoomCell cell;
 	public RoomCell[] doors;
 	public IntVector2 spawn;
+	public GameObject wall;
 
 	// Generates the grid
 	protected void GenerateGrid() {
@@ -36,7 +37,65 @@ public abstract class GenericRoom : MonoBehaviour {
 	}// getcellat
 
 	protected void MakeWalls() {
-
+		RoomCell theCell;
+		Vector3 cellPosition;
+		Transform wTransform;
+		// Set walls for south
+		for (int i = 0; i < size.x; i++) {
+			// Create the wall
+			wall = Instantiate(wall) as GameObject;
+			wTransform = wall.transform;
+			// Get cell and set the wall as child
+			theCell = GetCellAt(new IntVector2(i, 0));
+			cellPosition = theCell.transform.position;
+			wTransform.SetParent(theCell.transform);
+			// Set wall position
+			wTransform.position = new Vector3(cellPosition.x, cellPosition.y + 5f, cellPosition.z-5f);
+			wTransform.localScale = 1 * Vector3.one;
+			
+		}//for
+		// Set walls for north
+		for (int i = 0; i < size.x; i++) {
+			// Create the wall
+			wall = Instantiate(wall) as GameObject;
+			wTransform = wall.transform;
+			// Get cell and set the wall as child
+			theCell = GetCellAt(new IntVector2(i, size.z-1));
+			cellPosition = theCell.transform.position;
+			wTransform.SetParent(theCell.transform);
+			// Set wall position
+			wTransform.position = new Vector3(cellPosition.x, cellPosition.y + 5f, cellPosition.z+5f);
+			wTransform.localScale = 1 * Vector3.one;
+			wTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
+		}//for
+		// Set walls for east
+		for (int i = 0; i < size.z; i++) {
+			// Create the wall
+			wall = Instantiate(wall) as GameObject;
+			wTransform = wall.transform;
+			// Get cell and set the wall as child
+			theCell = GetCellAt(new IntVector2(0, i));
+			cellPosition = theCell.transform.position;
+			wTransform.SetParent(theCell.transform);
+			// Set wall position
+			wTransform.position = new Vector3(cellPosition.x - 5f, cellPosition.y + 5f, cellPosition.z);
+			wTransform.localScale = 1 * Vector3.one;
+			wTransform.rotation = Quaternion.Euler(0f, -90f, 0f);
+		}//for
+		// Set walls for west
+		for (int i = 0; i < size.z; i++) {
+			// Create the wall
+			wall = Instantiate(wall) as GameObject;
+			wTransform = wall.transform;
+			// Get cell and set the wall as child
+			theCell = GetCellAt(new IntVector2(size.x-1, i));
+			cellPosition = theCell.transform.position;
+			wTransform.SetParent(theCell.transform);
+			// Set wall position
+			wTransform.position = new Vector3(cellPosition.x + 5f, cellPosition.y + 5f, cellPosition.z);
+			wTransform.localScale = 1 * Vector3.one;
+			wTransform.rotation = Quaternion.Euler(0f, 90f, 0f);
+		}//for
 	}// makeWalls
 
 	// Randomise the doors, and also the enter door (spawn point in this room)
@@ -49,10 +108,6 @@ public abstract class GenericRoom : MonoBehaviour {
 
 		if (numberOfDoors > 0) {
 			coords = new IntVector2 (size.x-1, Random.Range (2, size.z - 2));
-			Debug.Log ("++++++++++++++");
-			Debug.Log ("x: " + size.x + ", z" + size.z);
-			Debug.Log ("noDoors: " + numberOfDoors);
-			Debug.Log("coords x: " + coords.x + ", coords z: " + coords.z);
 			doors [--numberOfDoors] = GetCellAt (coords);
 			// If this is the spawn door
 			if (spawnDoor == numberOfDoors) {
@@ -62,10 +117,6 @@ public abstract class GenericRoom : MonoBehaviour {
 		}
 		if (numberOfDoors > 0) {
 			coords = new IntVector2 (Random.Range (2, size.x - 2), size.z-1);
-			Debug.Log ("++++++++++++++");
-			Debug.Log ("x: " + size.x + ", z" + size.z);
-			Debug.Log ("noDoors: " + numberOfDoors);
-			Debug.Log("coords x: " + coords.x + ", coords z: " + coords.z);
 			doors [--numberOfDoors] = GetCellAt (coords);
 			// If this is the spawn door
 			if (spawnDoor == numberOfDoors) {
@@ -75,10 +126,6 @@ public abstract class GenericRoom : MonoBehaviour {
 		}
 		if (numberOfDoors > 0) {
 			coords = new IntVector2 (0, Random.Range (2, size.z - 2));
-			Debug.Log ("++++++++++++++");
-			Debug.Log ("x: " + size.x + ", z" + size.z);
-			Debug.Log ("noDoors: " + numberOfDoors);
-			Debug.Log("coords x: " + coords.x + ", coords z: " + coords.z);
 			doors [--numberOfDoors] = GetCellAt (coords);
 			// If this is the spawn door
 			if (spawnDoor == numberOfDoors) {
@@ -88,10 +135,6 @@ public abstract class GenericRoom : MonoBehaviour {
 		}
 		if (numberOfDoors > 0) {
 			coords = new IntVector2 (Random.Range (2, size.x - 2), 0);
-			Debug.Log ("++++++++++++++");
-			Debug.Log ("x: " + size.x + ", z" + size.z);
-			Debug.Log ("noDoors: " + numberOfDoors);
-			Debug.Log("coords x: " + coords.x + ", coords z: " + coords.z);
 			doors [--numberOfDoors] = GetCellAt (coords);
 			// If this is the spawn door
 			if (spawnDoor == numberOfDoors) {
@@ -103,7 +146,8 @@ public abstract class GenericRoom : MonoBehaviour {
 
 		// TODO : PUT DOORS ON WALLS
 		foreach (RoomCell door in doors) {
-			door.gameObject.transform.GetChild(0).GetComponent<MeshRenderer> ().material.color = Color.blue;
+			door.transform.GetChild(1).gameObject.GetComponent<WallControl>().door = true;
+			door.transform.GetChild(1).gameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
 		}
 	return doors;
 	}// getDoors
