@@ -96,6 +96,8 @@ public abstract class GenericRoom : MonoBehaviour {
 			}// if
 		}
 
+
+		// TODO : PUT DOORS ON WALLS
 		foreach (RoomCell door in doors) {
 			door.gameObject.transform.GetChild(0).GetComponent<MeshRenderer> ().material.color = Color.blue;
 		}
