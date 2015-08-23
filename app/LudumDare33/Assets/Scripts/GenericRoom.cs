@@ -15,6 +15,7 @@ public abstract class GenericRoom : MonoBehaviour {
 	public GameObject[] furniture;
 	public RoomCell cell;
 	public RoomCell[] doors;
+	public IntVector2 spawn;
 
 	// Generates the grid
 	protected void GenerateGrid() {
@@ -42,18 +43,20 @@ public abstract class GenericRoom : MonoBehaviour {
 		RoomCell[] doors = new RoomCell[numberOfDoors];
 		
 		while (numberOfDoors > 0) {
-			IntVector2 coords = new IntVector2(size.x, Random.Range (2, size.z-2));
-			doors[--numberOfDoors] = GetCellAt(coords);
-			Debug.Log("++++++++++++++");
-			Debug.Log("x: " + size.x + ", z" + size.z);
-	        Debug.Log("noDoors: " + numberOfDoors);
-		}
-
-		// If this is the spawn door
-		if(spawnDoor == numberOfDoors) {
-			FindObjectOfType<GameManager>().player = Instantiate(FindObjectOfType<GameManager>().playerPF,doors[spawnDoor].transform.position 
-			                                                     + Vector3.up,Quaternion.identity) as GameObject;
-		}// if
+			IntVector2 coords = new IntVector2 (size.x, Random.Range (2, size.z - 2));
+			doors [--numberOfDoors] = GetCellAt (coords);
+			Debug.Log ("++++++++++++++");
+			Debug.Log ("x: " + size.x + ", z" + size.z);
+			Debug.Log ("noDoors: " + numberOfDoors);
+			// If this is the spawn door
+			if (spawnDoor == numberOfDoors) {
+				spawn = new IntVector2 ((int)GetCellAt (coords).transform.position.x, (int)GetCellAt (coords).transform.position.z);
+			}// if
+		}// wgi
 	return doors;
 	}// getDoors
+
+	public IntVector2 GetSpawn() {
+		return spawn;
+	}
 }// class

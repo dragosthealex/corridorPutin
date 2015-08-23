@@ -7,7 +7,7 @@ public class WallControl : MonoBehaviour {
 	void Start () {
 	
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		
@@ -17,7 +17,7 @@ public class WallControl : MonoBehaviour {
 	{
 		if(door && col.gameObject.name == "putin")
 		{
-			Destroy(FindObjectOfType<Player>().gameObject);
+			FindObjectOfType<Player>().gameObject.transform.position = new Vector3(1000f, 1000f, 1000f);
 			Destroy(FindObjectOfType<Corridor>().gameObject);
 			FindObjectOfType<GameManager>().newRoom();
 		}
