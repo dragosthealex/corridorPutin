@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Base path: D:/Programs/Unity/Editor/Data
 Pipe name: \\.\pipe\UnityShaderCompiler-64bit-1-7160
 Cmd: getPlatforms
@@ -17,3 +18,13 @@ Cmd: compileSnippet
   api=4 type=0 insize=938 outsize=4727 kw=POINT SHADOWS_OFF _NORMALMAP ok=1
 Cmd: compileSnippet
   api=4 type=1 insize=938 outsize=6718 kw=POINT SHADOWS_OFF _NORMALMAP ok=1
+=======
+<<<<<<< HEAD
+Base path: E:/Unity 5/Editor/Data
+Pipe name: \\.\pipe\UnityShaderCompiler-64bit-1-5524
+=======
+Base path: E:/Developer/Applications/Editor/Data
+Pipe name: \\.\pipe\UnityShaderCompiler-64bit-1-2280
+>>>>>>> 216450eaee1eced28635b2e4518b87748535e757
+Cmd: getPlatforms
+>>>>>>> fa96a298837f7a7894de4b4c2d3924e7f54fb5e0

@@ -16,10 +16,16 @@ public class Player : MonoBehaviour {
 	public int mag,ammo;
 	public float nowTime, delayTime;
 
-	public int maxHP = 100;
+	public int maxHP;
 	public int currentHP;
 
 	public int armor;
+
+	public int level;
+	public int currentXP;
+	public int XPtoLVL;
+	public int ExtraDMG;
+	public int SexAppeal;
 
 	public CharPanel panel;
 	public bool isPanelactive = false;
@@ -31,9 +37,13 @@ public class Player : MonoBehaviour {
 	}
 	void Awake() {
 		panel = FindObjectOfType<CharPanel> ();
-
+		level = 1;
+		currentXP = 0;
+		XPtoLVL = 100;
 		maxHP = 100;
 		currentHP = maxHP;
+		ExtraDMG = 0;
+		SexAppeal = 0;
 	}
 	
 	// Update is called once per frame
@@ -41,6 +51,9 @@ public class Player : MonoBehaviour {
 
 //		if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey (KeyCode.A) || Input.GetKey(KeyCode.D)) && !GetComponent<AudioSource>().isPlaying)
 //			GetComponent<AudioSource>().Play();
+		// XP slider test
+		if (Input.GetKeyDown (KeyCode.X))
+			GiveXP (10);
 		// dmg/slider test
 		if (Input.GetKeyDown (KeyCode.G))
 			armor = 100;
@@ -87,7 +100,14 @@ public class Player : MonoBehaviour {
 		mag = ammo >= ammoToSubstract ? 30 : mag + ammo;
 		ammo = ammo >= ammoToSubstract ? ammo - ammoToSubstract : 0;
 	}// Reload
-
+	public void GiveXP(int amount) {
+		currentXP += amount;
+		if (currentXP >= XPtoLVL) {
+			currentXP -= XPtoLVL;
+			level ++;
+			XPtoLVL *= 2;
+		}
+	}
 	public void DamagePlayer(int amount) {
 		if (armor >= amount)
 			armor -= amount;

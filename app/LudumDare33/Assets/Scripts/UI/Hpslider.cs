@@ -4,14 +4,12 @@ using System.Collections;
 
 public class Hpslider : MonoBehaviour {
 	public Player player;
-	public float val;
 
 	// Use this for initialization
 	void Start () {
 		
 	}
 	void Awake() {
-		val = GetComponent<Slider> ().value;
 	}
 	// Update is called once per frame
 	void Update () {
