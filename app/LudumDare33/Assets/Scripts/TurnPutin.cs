@@ -36,7 +36,6 @@ public class TurnPutin : MonoBehaviour {
 			transform.LookAt(transform.position + playerToMouse, Vector3.up);
 			
 		}// if
-
 		Camera.main.gameObject.transform.position = transform.position + new Vector3(0f, 32.1f, 0f);
 	}// turning
 }
