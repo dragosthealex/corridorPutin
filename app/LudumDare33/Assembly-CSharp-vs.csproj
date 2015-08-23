@@ -47,18 +47,28 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Bullet.cs" />
+     <Compile Include="Assets\Scripts\ConferenceRoom.cs" />
      <Compile Include="Assets\Scripts\Corridor.cs" />
      <Compile Include="Assets\Scripts\CorridorCell.cs" />
      <Compile Include="Assets\Scripts\CorridorDirection.cs" />
      <Compile Include="Assets\Scripts\CorridorDirections.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\GenericRoom.cs" />
      <Compile Include="Assets\Scripts\GrabAmmo.cs" />
      <Compile Include="Assets\Scripts\Hpslider.cs" />
      <Compile Include="Assets\Scripts\IntVector2.cs" />
+     <Compile Include="Assets\Scripts\MouseOrbitImproved.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\Room.cs" />
+<<<<<<< HEAD
      <Compile Include="Assets\Scripts\TurnPutin.cs" />
      <Compile Include="Assets\Scripts\Wall.cs" />
+=======
+     <Compile Include="Assets\Scripts\RoomCell.cs" />
+     <Compile Include="Assets\Scripts\TurnPutin.cs" />
+     <Compile Include="Assets\Scripts\Wall.cs" />
+     <Compile Include="Assets\WallControl.cs" />
+>>>>>>> d3c67abb746a9c53f442e99973138d25acf2746b
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
