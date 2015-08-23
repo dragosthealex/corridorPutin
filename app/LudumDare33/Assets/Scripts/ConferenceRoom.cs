@@ -17,6 +17,7 @@ public class ConferenceRoom : GenericRoom {
 		tileGrid = new RoomCell[size.x, size.z];
 		// Get the doors
 		GenerateGrid ();
+		MakeWalls ();
 		doors = GetDoors();
 		// Generate the grid
 		// Instantiate the middle

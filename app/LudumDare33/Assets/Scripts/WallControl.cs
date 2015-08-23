@@ -18,7 +18,12 @@ public class WallControl : MonoBehaviour {
 		if(door && col.gameObject.name == "putin")
 		{
 			FindObjectOfType<Player>().gameObject.transform.position = new Vector3(1000f, 1000f, 1000f);
-			Destroy(FindObjectOfType<Corridor>().gameObject);
+			if(GameObject.Find("Corridor(Clone)")) {
+				Destroy(FindObjectOfType<Corridor>().gameObject);
+			}
+			if(GameObject.Find("ConferenceRoom(Clone)")) {
+				Destroy(FindObjectOfType<ConferenceRoom>().gameObject);
+			}
 			FindObjectOfType<GameManager>().newRoom();
 		}
 	}

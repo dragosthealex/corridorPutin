@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 public class Corridor : GenericRoom {
 
-	// Size of the grid
-	public IntVector2 size;
 	// A single cell
 	public CorridorCell corridorCell;
 	
@@ -119,10 +117,8 @@ public class Corridor : GenericRoom {
 
 		// The new cell
 		CorridorCell newCell;
-		Debug.Log ("###Corridor Cell " + nextCoordinates.x + ", " + nextCoordinates.z);
 		newCell = Instantiate (corridorCell) as CorridorCell;
 		newCell.PointFromTo (currentDirection, nextDirection);
-		Debug.Log ("--------------------------");
 
 		cells [nextCoordinates.x, nextCoordinates.z] = newCell;
 		//newCell.material.color = new Color (Random.Range (0f, 1f), Random.Range (0f, 1f), Random.Range (0f, 1f));
