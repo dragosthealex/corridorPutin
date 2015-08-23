@@ -13,13 +13,21 @@ public class Player : MonoBehaviour {
 	public Transform bar;
 
 	public int mag,ammo;
-
 	public float nowTime, delayTime;
+
+	public int maxHP = 100;
+	public int currentHP;
+	public Slider HPSlider;
 
 	public Camera cam;
 
 	// Use this for initialization
 	void Start () {
+
+	}
+	void Awake() {
+		maxHP = 100;
+		currentHP = maxHP;
 	}
 	
 	// Update is called once per frame
@@ -27,7 +35,9 @@ public class Player : MonoBehaviour {
 
 //		if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey (KeyCode.A) || Input.GetKey(KeyCode.D)) && !GetComponent<AudioSource>().isPlaying)
 //			GetComponent<AudioSource>().Play();
-
+		// dmg/slider test
+		if(Input.GetKeyDown (KeyCode.F))
+		   DamagePlayer(10);
 
 
 		// Reload
@@ -61,4 +71,8 @@ public class Player : MonoBehaviour {
 		mag = ammo >= ammoToSubstract ? 30 : mag + ammo;
 		ammo = ammo >= ammoToSubstract ? ammo - ammoToSubstract : 0;
 	}// Reload
+
+	private void DamagePlayer(int amount) {
+		currentHP -= amount;
+	}//use when damaging player
 }
