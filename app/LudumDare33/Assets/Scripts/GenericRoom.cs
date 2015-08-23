@@ -19,8 +19,8 @@ public abstract class GenericRoom : MonoBehaviour {
 
 	// Generates the grid
 	protected void GenerateGrid() {
-		for (int i = 0; i<= size.x; i++) {
-			for (int j = 0; j<= size.z; j++) {
+		for (int i = 0; i< size.x; i++) {
+			for (int j = 0; j< size.z; j++) {
 				RoomCell newCell = Instantiate (cell) as RoomCell;
 				newCell.name = "Room Cell at " + i + ", " + j;
 				tileGrid[i, j] = newCell;
@@ -41,18 +41,64 @@ public abstract class GenericRoom : MonoBehaviour {
 		int numberOfDoors = Random.Range (1, 4);
 		int spawnDoor = Random.Range(0, numberOfDoors-1);
 		RoomCell[] doors = new RoomCell[numberOfDoors];
-		
-		while (numberOfDoors > 0) {
-			IntVector2 coords = new IntVector2 (size.x, Random.Range (2, size.z - 2));
-			doors [--numberOfDoors] = GetCellAt (coords);
+		IntVector2 coords;
+
+		if (numberOfDoors > 0) {
+			coords = new IntVector2 (size.x-1, Random.Range (2, size.z - 2));
 			Debug.Log ("++++++++++++++");
 			Debug.Log ("x: " + size.x + ", z" + size.z);
 			Debug.Log ("noDoors: " + numberOfDoors);
+			Debug.Log("coords x: " + coords.x + ", coords z: " + coords.z);
+			doors [--numberOfDoors] = GetCellAt (coords);
 			// If this is the spawn door
 			if (spawnDoor == numberOfDoors) {
-				spawn = new IntVector2 ((int)GetCellAt (coords).transform.position.x, (int)GetCellAt (coords).transform.position.z);
+				spawn = new IntVector2 ((int)GetCellAt (coords).gameObject.transform.position.x, 
+				                        (int)GetCellAt (coords).gameObject.transform.position.z);
 			}// if
-		}// wgi
+		}
+		if (numberOfDoors > 0) {
+			coords = new IntVector2 (Random.Range (2, size.x - 2), size.z-1);
+			Debug.Log ("++++++++++++++");
+			Debug.Log ("x: " + size.x + ", z" + size.z);
+			Debug.Log ("noDoors: " + numberOfDoors);
+			Debug.Log("coords x: " + coords.x + ", coords z: " + coords.z);
+			doors [--numberOfDoors] = GetCellAt (coords);
+			// If this is the spawn door
+			if (spawnDoor == numberOfDoors) {
+				spawn = new IntVector2 ((int)GetCellAt (coords).gameObject.transform.position.x, 
+				                        (int)GetCellAt (coords).gameObject.transform.position.z);
+			}// if
+		}
+		if (numberOfDoors > 0) {
+			coords = new IntVector2 (0, Random.Range (2, size.z - 2));
+			Debug.Log ("++++++++++++++");
+			Debug.Log ("x: " + size.x + ", z" + size.z);
+			Debug.Log ("noDoors: " + numberOfDoors);
+			Debug.Log("coords x: " + coords.x + ", coords z: " + coords.z);
+			doors [--numberOfDoors] = GetCellAt (coords);
+			// If this is the spawn door
+			if (spawnDoor == numberOfDoors) {
+				spawn = new IntVector2 ((int)GetCellAt (coords).gameObject.transform.position.x, 
+				                        (int)GetCellAt (coords).gameObject.transform.position.z);
+			}// if
+		}
+		if (numberOfDoors > 0) {
+			coords = new IntVector2 (Random.Range (2, size.x - 2), 0);
+			Debug.Log ("++++++++++++++");
+			Debug.Log ("x: " + size.x + ", z" + size.z);
+			Debug.Log ("noDoors: " + numberOfDoors);
+			Debug.Log("coords x: " + coords.x + ", coords z: " + coords.z);
+			doors [--numberOfDoors] = GetCellAt (coords);
+			// If this is the spawn door
+			if (spawnDoor == numberOfDoors) {
+				spawn = new IntVector2 ((int)GetCellAt (coords).gameObject.transform.position.x, 
+				                        (int)GetCellAt (coords).gameObject.transform.position.z);
+			}// if
+		}
+
+		foreach (RoomCell door in doors) {
+			door.gameObject.transform.GetChild(0).GetComponent<MeshRenderer> ().material.color = Color.blue;
+		}
 	return doors;
 	}// getDoors
 

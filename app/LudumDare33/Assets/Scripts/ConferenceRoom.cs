@@ -16,9 +16,9 @@ public class ConferenceRoom : GenericRoom {
 		size.z = Random.Range(minSize.z, maxSize.z);
 		tileGrid = new RoomCell[size.x, size.z];
 		// Get the doors
+		GenerateGrid ();
 		doors = GetDoors();
 		// Generate the grid
-		GenerateGrid ();
 		// Instantiate the middle
 		//middle = Instantiate(middlePrefab) as GameObject;
 		// Instantiate the furnitures
