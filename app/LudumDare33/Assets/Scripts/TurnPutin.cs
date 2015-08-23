@@ -37,6 +37,6 @@ public class TurnPutin : MonoBehaviour {
 			
 		}// if
 
-		Camera.main.gameObject.transform.position = transform.position + new Vector3(0f, 32.1f, -9f);
+		Camera.main.gameObject.transform.position = transform.position + new Vector3(0f, 32.1f, 0f);
 	}// turning
 }
