@@ -18,8 +18,11 @@ public class Player : MonoBehaviour {
 
 	public int maxHP = 100;
 	public int currentHP;
-	public Slider HPSlider;
 
+	public int armor;
+
+	public CharPanel panel;
+	public bool isPanelactive = false;
 	public Camera cam;
 
 	// Use this for initialization
@@ -27,6 +30,8 @@ public class Player : MonoBehaviour {
 
 	}
 	void Awake() {
+		panel = FindObjectOfType<CharPanel> ();
+
 		maxHP = 100;
 		currentHP = maxHP;
 	}
@@ -37,9 +42,18 @@ public class Player : MonoBehaviour {
 //		if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey (KeyCode.A) || Input.GetKey(KeyCode.D)) && !GetComponent<AudioSource>().isPlaying)
 //			GetComponent<AudioSource>().Play();
 		// dmg/slider test
+		if (Input.GetKeyDown (KeyCode.G))
+			armor = 100;
 		if(Input.GetKeyDown (KeyCode.F))
 		   DamagePlayer(10);
-
+		//show character panel on C press
+		if (Input.GetKeyDown (KeyCode.C)) {
+			isPanelactive = !isPanelactive;
+		}
+		if (isPanelactive)
+			panel.canvasGroup.alpha = 1f;
+		else
+			panel.canvasGroup.alpha = 0f;
 
 		// Reload
 		if (Input.GetKeyDown (KeyCode.R) && ammo > 0 && mag < 30) {
@@ -77,7 +91,10 @@ public class Player : MonoBehaviour {
 		ammo = ammo >= ammoToSubstract ? ammo - ammoToSubstract : 0;
 	}// Reload
 
-	private void DamagePlayer(int amount) {
-		currentHP -= amount;
+	public void DamagePlayer(int amount) {
+		if (armor >= amount)
+			armor -= amount;
+		else 
+			currentHP -= (amount-armor);
 	}//use when damaging player
 }
