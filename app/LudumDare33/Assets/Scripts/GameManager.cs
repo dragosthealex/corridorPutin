@@ -53,6 +53,6 @@ public class GameManager : MonoBehaviour {
 			    conferenceRoomInstance.GetSpawn ().x, 1f, conferenceRoomInstance.GetSpawn ().z);
 			break;
 		}
-		FindObjectOfType<TurnPutin>().gameObject.transform.localPosition = new Vector3(0f, 1f, 0f);
+		FindObjectOfType<TurnPutin>().gameObject.transform.localPosition = new Vector3(0f, 0f, 0f);
 	}
 }

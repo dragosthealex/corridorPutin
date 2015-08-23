@@ -34,7 +34,11 @@ public abstract class GenericRoom : MonoBehaviour {
 	public RoomCell GetCellAt(IntVector2 coords) {
 		return tileGrid[coords.x, coords.z];
 	}// getcellat
-	
+
+	protected void MakeWalls() {
+
+	}// makeWalls
+
 	// Randomise the doors, and also the enter door (spawn point in this room)
 	protected RoomCell[] GetDoors() {
 		// Number of doors
