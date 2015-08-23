@@ -2,19 +2,19 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class Hpslider : MonoBehaviour {
+public class XPSlider : MonoBehaviour {
 	public Player player;
-
+	
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		
 	}
-	void Awake() {
-	}
+	
 	// Update is called once per frame
 	void Update () {
 		if (player == null)
 			player = FindObjectOfType<Player> ();
-		GetComponent<Slider> ().value = player.currentHP;
+		GetComponent<Slider> ().value = player.currentXP;
+		GetComponent<Slider> ().maxValue = player.XPtoLVL;
 	}
 }

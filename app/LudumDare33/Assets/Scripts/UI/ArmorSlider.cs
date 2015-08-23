@@ -5,7 +5,7 @@ using System.Collections;
 public class ArmorSlider : MonoBehaviour {
 	public Player player;
 	public float val;
-	private CanvasGroup canvasGroup;
+	public CanvasGroup canvasGroup;
 	// Use this for initialization
 	void Awake() {
 		canvasGroup = FindObjectOfType<CanvasGroup> ();

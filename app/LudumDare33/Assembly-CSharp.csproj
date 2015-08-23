@@ -62,8 +62,13 @@
      <Compile Include="Assets\Scripts\TurnPutin.cs" />
      <Compile Include="Assets\Scripts\UI\ArmorSlider.cs" />
      <Compile Include="Assets\Scripts\UI\CharPanel.cs" />
+     <Compile Include="Assets\Scripts\UI\DmgDisp.cs" />
      <Compile Include="Assets\Scripts\UI\GrabAmmo.cs" />
      <Compile Include="Assets\Scripts\UI\Hpslider.cs" />
+     <Compile Include="Assets\Scripts\UI\LevelDIsplay.cs" />
+     <Compile Include="Assets\Scripts\UI\MaxHPDisplay.cs" />
+     <Compile Include="Assets\Scripts\UI\SexDisp.cs" />
+     <Compile Include="Assets\Scripts\UI\XPSlider.cs" />
      <Compile Include="Assets\Scripts\Wall.cs" />
      <Compile Include="Assets\Scripts\WallControl.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
