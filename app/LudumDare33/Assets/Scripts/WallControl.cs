@@ -33,6 +33,9 @@ public class WallControl : MonoBehaviour {
 			if(GameObject.Find("Bedroom(Clone)")) {
 				Destroy(GameObject.Find("Bedroom(Clone)").gameObject);
 			}
+			if(GameObject.Find("Pool(Clone)")) {
+				Destroy(GameObject.Find("Pool(Clone)").gameObject);
+			}
 			FindObjectOfType<GameManager>().newRoom();
 		}
 	}

@@ -8,10 +8,13 @@ public class GameManager : MonoBehaviour {
 	public ConferenceRoom conferenceRoomPrefab;
 	public Bar barPrefab;
 	public Bedroom bedroomPrefab;
+	public Pool poolPrefab;
 	public GameObject startRoomInstance;
 	public Camera initialCamera;
 	private Corridor corridorInstance;
 	private Bar barInstance;
+	private Pool poolInstance;
+	
 	private Bedroom bedroomInstance;
 	private ConferenceRoom conferenceRoomInstance;
 	// Player prefab
@@ -51,7 +54,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void newRoom() {
-		int randomRoom = Random.Range (0, 4);
+		int randomRoom = Random.Range (0, 5);
 		Transform putinTransform = FindObjectOfType<TurnPutin> ().gameObject.transform;
 		switch (randomRoom) {
 		case 0:
@@ -83,6 +86,13 @@ public class GameManager : MonoBehaviour {
                  bedroomInstance.GetSpawn ().x, 0f, bedroomInstance.GetSpawn ().z);
 			putinTransform.localPosition = new Vector3(0f, 0f, 0f);
 			FindObjectOfType<Player> ().room = bedroomInstance;
+			break;
+		case 4:
+			poolInstance = Instantiate (poolPrefab) as Pool;
+			FindObjectOfType<Player> ().gameObject.transform.position = new Vector3( 
+			     poolInstance.GetSpawn ().x, 0f, poolInstance.GetSpawn ().z);
+			putinTransform.localPosition = new Vector3(0f, 0f, 0f);
+			FindObjectOfType<Player> ().room = poolInstance;
 			break;
 		}
 	}
