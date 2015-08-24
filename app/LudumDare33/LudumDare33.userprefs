@@ -2,7 +2,11 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ALexCamMovement.cs">
     <Files>
+<<<<<<< HEAD
+      <File FileName="Assets\Scripts\ALexCamMovement.cs" Line="16" Column="25" />
+=======
       <File FileName="Assets\Scripts\ALexCamMovement.cs" Line="23" Column="35" />
+>>>>>>> 049a6142983382c099ec557f319b13fc3eb6ad53
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

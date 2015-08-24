@@ -15,17 +15,16 @@ public class ConferenceRoom : GenericRoom {
 		size.x = Random.Range(minSize.x, maxSize.x);
 		size.z = Random.Range(minSize.z, maxSize.z);
 		tileGrid = new RoomCell[size.x, size.z];
-		// Get the doors
+		// Generate the grid and make the walls
 		GenerateGrid ();
 		MakeWalls ();
+		// Get the door cells
 		doors = GetDoors();
-		// Generate the grid
-		// Instantiate the middle
-		//middle = Instantiate(middlePrefab) as GameObject;
-		// Instantiate the furnitures
-//		foreach (GameObject furniturePrefab in furniture) {
-//			furniturePrefab = Instantiate(furniturePrefab) as GameObject;
-//		}
+		// Generate the middle
+		RoomCell middleCell = GetCellAt (new IntVector2(size.x / 2, size.z / 2));
+		float floorY = FindObjectOfType<ConferenceRoom>().gameObject.transform.position.y;
+		middle = Instantiate (middlePrefab) as GameObject;
+		middle.transform.position = middleCell.transform.position + new Vector3 (2.5f, -5f, 2.5f);
 	}
 	
 	// Update is called once per frame
