@@ -23,6 +23,7 @@ public class Corridor : GenericRoom {
 	private CorridorCell[,] cells;
 	// Dictionary with the generated cells
 	//private  ArrayList cellList = new ArrayList();
+	[SerializeField]
 	public List<CorridorCell> cellList = new List<CorridorCell>();
 
 	// Use this for initialization
@@ -88,6 +89,9 @@ public class Corridor : GenericRoom {
 			currentDirection = nextDirection;
 			currentCoordinates = nextCoordinates;
 		}// while
+
+		// Spawn the npcs
+		corridorSpawnNPCs ();
 	}// generate
 
 	// Create the first cell (speshal)
@@ -100,6 +104,7 @@ public class Corridor : GenericRoom {
 		newCell.transform.parent = transform;
 		newCell.transform.localPosition = new Vector3 (nextCoordinates.x - size.x * 0.5f + 0.5f, 
 		                                               0f, nextCoordinates.z - size.z * 0.5f + 0.5f);
+		newCell.setFull ();
 
 		cellList.Add(newCell);
 
@@ -126,6 +131,8 @@ public class Corridor : GenericRoom {
 		newCell.transform.parent = transform;
 		newCell.transform.localPosition = new Vector3 (nextCoordinates.x - size.x * 0.5f + 0.5f, 
 		                                               0f, nextCoordinates.z - size.z * 0.5f + 0.5f);
+
+		cellList.Add(newCell);
 	}// createCell
 
 	// Checks whether the given coordinates is whithin the corridor
@@ -134,5 +141,22 @@ public class Corridor : GenericRoom {
 			&& coordinate.z >= 0 && coordinate.z < size.z;
 	}// containsCoordinates
 
-
+	// Spawn the npcs
+	private void corridorSpawnNPCs () {
+		foreach (CorridorCell theCell in cellList) {
+			if (theCell.isEmpty() && npcProbability > Random.Range (0, 100)) {
+				// If spawn enemies
+				if(enemyProbability > Random.Range(0, 100)){
+					// Spawn enemy
+					enemy = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)]) as GameObject;
+					enemy.transform.position = theCell.transform.position;
+					enemy.transform.SetParent(this.gameObject.transform);
+				} else {
+					neutral = Instantiate(neutralPrefabs[Random.Range(0, neutralPrefabs.Length)]) as GameObject;
+					neutral.transform.position = theCell.transform.position;
+					neutral.transform.SetParent(this.gameObject.transform);
+				}// else
+			}//if
+		}// for
+	}// spawn npcs
 }

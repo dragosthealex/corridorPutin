@@ -1,12 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ALexCamMovement.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Corridor.cs">
     <Files>
-<<<<<<< HEAD
-      <File FileName="Assets\Scripts\ALexCamMovement.cs" Line="16" Column="25" />
-=======
-      <File FileName="Assets\Scripts\ALexCamMovement.cs" Line="23" Column="35" />
->>>>>>> 049a6142983382c099ec557f319b13fc3eb6ad53
+      <File FileName="Assets\Scripts\ConferenceRoom.cs" Line="35" Column="12" />
+      <File FileName="Assets\Scripts\GenericRoom.cs" Line="175" Column="83" />
+      <File FileName="Assets\Scripts\RoomCell.cs" Line="13" Column="13" />
+      <File FileName="Assets\Scripts\Corridor.cs" Line="146" Column="1" />
+      <File FileName="Assets\Scripts\CorridorCell.cs" Line="19" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
