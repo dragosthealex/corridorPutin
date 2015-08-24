@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GameManager : MonoBehaviour {
@@ -7,17 +8,22 @@ public class GameManager : MonoBehaviour {
 	public ConferenceRoom conferenceRoomPrefab;
 	private Corridor corridorInstance;
 	private ConferenceRoom conferenceRoomInstance;
-
 	// Player prefab
 	public GameObject playerPF;
 
 	//Player
 	public GameObject player;
 
+	public Camera mainCam;
+	public GameObject OLcanvas;
+	public GameObject StartRoom;
 	private void Start () {
 		BeginGame();
-		player = Instantiate(playerPF,corridorInstance.cellList[0].transform.position + Vector3.up,Quaternion.identity) as GameObject;
-
+		mainCam = Camera.main;
+		mainCam.gameObject.SetActive (false);
+		OLcanvas = GameObject.FindGameObjectWithTag ("canvas");
+		OLcanvas.gameObject.SetActive (false);
+		StartRoom = GameObject.FindGameObjectWithTag ("startroom");
 	}
 	
 	private void Update () {
@@ -27,6 +33,7 @@ public class GameManager : MonoBehaviour {
 	private void BeginGame () {
 		corridorInstance = Instantiate (corridorPrefab) as Corridor;
 		corridorInstance.Generate ();
+		player = Instantiate(playerPF,corridorInstance.cellList[0].transform.position + Vector3.up,Quaternion.identity) as GameObject;
 	}
 	
 	private void RestartGame () {
@@ -53,5 +60,10 @@ public class GameManager : MonoBehaviour {
 			putinTransform.localPosition = new Vector3(0f, -14f, 0f);
 			break;
 		}
+	}
+	public void Play_game(){
+		StartRoom.gameObject.SetActive (false);
+		mainCam.gameObject.SetActive (true);
+		OLcanvas.gameObject.SetActive (true);
 	}
 }
