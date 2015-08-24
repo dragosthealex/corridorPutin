@@ -26,6 +26,9 @@ public class Corridor : GenericRoom {
 	[SerializeField]
 	public List<CorridorCell> cellList = new List<CorridorCell>();
 
+	void Awake () {
+		isCorridor = true;
+	}
 	// Use this for initialization
 	void Start () {
 	

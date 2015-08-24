@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\ALexCamMovement.cs" />
+     <Compile Include="Assets\Scripts\Bar.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
      <Compile Include="Assets\Scripts\ConferenceRoom.cs" />
      <Compile Include="Assets\Scripts\Corridor.cs" />

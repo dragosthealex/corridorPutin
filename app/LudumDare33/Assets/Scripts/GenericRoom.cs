@@ -22,10 +22,42 @@ public abstract class GenericRoom : MonoBehaviour {
 	public int enemyProbability;
 	public int npcProbability;
 	public GameObject[] enemyPrefabs;
+	public Material wallMaterial;
+	public Material floorMaterial;
 	protected GameObject enemy;
 	public GameObject[] neutralPrefabs;
 	protected GameObject neutral;
+	protected bool isCorridor = false;
 
+	// Use this for initialization
+	void Awake () {
+		//roomEvents = [];
+		// Get the size and the grid
+		if (!isCorridor) {
+			size.x = Random.Range (minSize.x, maxSize.x);
+			size.z = Random.Range (minSize.z, maxSize.z);
+			tileGrid = new RoomCell[size.x, size.z];
+			// Generate the grid and make the walls
+			GenerateGrid ();
+			MakeWalls ();
+			// Get the door cells
+			doors = GetDoors ();
+			// Generate the middle
+			RoomCell middleCell = GetCellAt (new IntVector2 (size.x / 2 -1, size.z / 2 -1));
+			float floorY = gameObject.transform.position.y;
+			middle = Instantiate (middlePrefab) as GameObject;
+			middle.transform.position = middleCell.transform.position + new Vector3 (5f, 0f, 5f);
+			middle.transform.SetParent (this.transform);
+			GetCellAt (new IntVector2 (size.x / 2, size.z / 2)).setFull ();
+			GetCellAt (new IntVector2 (size.x / 2, size.z / 2 + 1)).setFull ();
+			GetCellAt (new IntVector2 (size.x / 2 + 1, size.z / 2)).setFull ();
+			GetCellAt (new IntVector2 (size.x / 2 + 1, size.z / 2 + 1)).setFull ();
+			// Fill with furniture
+			
+			// Fill with NPCs
+			spawnNPCs ();
+		}
+	}
 
 	// Generates the grid
 	protected void GenerateGrid() {
@@ -33,6 +65,7 @@ public abstract class GenericRoom : MonoBehaviour {
 			for (int j = 0; j< size.z; j++) {
 				RoomCell newCell = Instantiate (cell) as RoomCell;
 				newCell.name = "Room Cell at " + i + ", " + j;
+				newCell.gameObject.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = floorMaterial;
 				tileGrid[i, j] = newCell;
 				newCell.transform.parent = transform;
 				newCell.transform.localPosition = new Vector3 (i - size.x * 0.5f + 0.5f, 
@@ -57,6 +90,7 @@ public abstract class GenericRoom : MonoBehaviour {
 		for (int i = 0; i < size.x; i++) {
 			// Create the wall
 			wall = Instantiate(wall) as GameObject;
+			wall.GetComponent<Renderer>().material = wallMaterial;
 			wTransform = wall.transform;
 			// Get cell and set the wall as child
 			theCell = GetCellAt(new IntVector2(i, 0));
@@ -71,6 +105,7 @@ public abstract class GenericRoom : MonoBehaviour {
 		for (int i = 0; i < size.x; i++) {
 			// Create the wall
 			wall = Instantiate(wall) as GameObject;
+			wall.GetComponent<Renderer>().material = wallMaterial;
 			wTransform = wall.transform;
 			// Get cell and set the wall as child
 			theCell = GetCellAt(new IntVector2(i, size.z-1));
@@ -85,6 +120,7 @@ public abstract class GenericRoom : MonoBehaviour {
 		for (int i = 0; i < size.z; i++) {
 			// Create the wall
 			wall = Instantiate(wall) as GameObject;
+			wall.GetComponent<Renderer>().material = wallMaterial;
 			wTransform = wall.transform;
 			// Get cell and set the wall as child
 			theCell = GetCellAt(new IntVector2(0, i));
@@ -99,6 +135,7 @@ public abstract class GenericRoom : MonoBehaviour {
 		for (int i = 0; i < size.z; i++) {
 			// Create the wall
 			wall = Instantiate(wall) as GameObject;
+			wall.GetComponent<Renderer>().material = wallMaterial;
 			wTransform = wall.transform;
 			// Get cell and set the wall as child
 			theCell = GetCellAt(new IntVector2(size.x-1, i));
