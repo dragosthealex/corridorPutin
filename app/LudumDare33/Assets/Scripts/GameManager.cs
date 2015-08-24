@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour {
 
 	public Corridor corridorPrefab;
 	public ConferenceRoom conferenceRoomPrefab;
+	public GameObject startRoomInstance;
+	public Camera initialCamera;
 	private Corridor corridorInstance;
 	private ConferenceRoom conferenceRoomInstance;
 	// Player prefab
@@ -18,9 +20,6 @@ public class GameManager : MonoBehaviour {
 	public GameObject OLcanvas;
 	public GameObject StartRoom;
 	private void Start () {
-		BeginGame();
-		mainCam = Camera.main;
-		mainCam.gameObject.SetActive (false);
 		OLcanvas = GameObject.FindGameObjectWithTag ("canvas");
 		OLcanvas.gameObject.SetActive (false);
 		StartRoom = GameObject.FindGameObjectWithTag ("startroom");
@@ -31,9 +30,12 @@ public class GameManager : MonoBehaviour {
 	}
 	
 	private void BeginGame () {
-		corridorInstance = Instantiate (corridorPrefab) as Corridor;
-		corridorInstance.Generate ();
-		player = Instantiate(playerPF,corridorInstance.cellList[0].transform.position + Vector3.up,Quaternion.identity) as GameObject;
+		Vector3 initialPutinPosition = startRoomInstance.transform.FindChild ("putin").transform.position;
+		Destroy (startRoomInstance.transform.FindChild ("putin").gameObject);
+		Destroy (startRoomInstance.transform.FindChild ("ak47").gameObject);
+		player = Instantiate(playerPF,initialPutinPosition, Quaternion.identity) as GameObject;
+		//OLcanvas.gameObject.SetActive (true);
+		Destroy (initialCamera.gameObject);
 	}
 	
 	private void RestartGame () {
@@ -62,8 +64,6 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 	public void Play_game(){
-		StartRoom.gameObject.SetActive (false);
-		mainCam.gameObject.SetActive (true);
-		OLcanvas.gameObject.SetActive (true);
+		BeginGame();
 	}
 }
