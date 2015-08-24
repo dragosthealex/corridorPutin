@@ -9,7 +9,6 @@ public class ALexCamMovement : MonoBehaviour {
 	public GameObject camera;
 
 	void Awake (){
-
 		camera = FindObjectOfType<Camera>().gameObject;
 	}
 

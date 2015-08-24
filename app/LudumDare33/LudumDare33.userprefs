@@ -1,8 +1,31 @@
 ﻿<Properties>
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ALexCamMovement.cs">
     <Files>
       <File FileName="Assets\Scripts\ALexCamMovement.cs" Line="18" Column="64" />
+=======
+<<<<<<< HEAD
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CorridorCell.cs">
+    <Files>
+      <File FileName="Assets\Scripts\GenericRoom.cs" Line="29" Column="1" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="24" Column="1" />
+      <File FileName="Assets\Scripts\Player.cs" Line="118" Column="1" />
+      <File FileName="Assets\Scripts\Corridor.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ConferenceRoom.cs" Line="11" Column="28" />
+      <File FileName="Assets\Scripts\CorridorCell.cs" Line="5" Column="42" />
+      <File FileName="Assets\Scripts\WallControl.cs" Line="19" Column="4" />
+      <File FileName="Assets\Scripts\newCamera.cs" Line="28" Column="22" />
+      <File FileName="Assets\Scripts\TurnPutin.cs" Line="36" Column="4" />
+      <File FileName="Assets\Scripts\MouseOrbitImproved.cs" Line="57" Column="40" />
+=======
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ALexCamMovement.cs">
+    <Files>
+      <File FileName="Assets\Scripts\ALexCamMovement.cs" Line="24" Column="115" />
+>>>>>>> 112d44c32b6a69e26d3a2b523b72f5988ef0509c
+>>>>>>> 30b7a925f66b2ebdf1c1bd43446bf58f10c8c974
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
