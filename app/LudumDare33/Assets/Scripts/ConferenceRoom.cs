@@ -25,6 +25,7 @@ public class ConferenceRoom : GenericRoom {
 		float floorY = FindObjectOfType<ConferenceRoom>().gameObject.transform.position.y;
 		middle = Instantiate (middlePrefab) as GameObject;
 		middle.transform.position = middleCell.transform.position + new Vector3 (2.5f, -5f, 2.5f);
+		middle.transform.SetParent (this.transform);
 		GetCellAt (new IntVector2 (size.x / 2, size.z / 2)).setFull();
 		GetCellAt (new IntVector2 (size.x / 2 + 1, size.z / 2)).setFull();
 		GetCellAt (new IntVector2 (size.x / 2, size.z / 2 + 1)).setFull ();

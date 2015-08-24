@@ -8,8 +8,10 @@ public abstract class GenericRoom : MonoBehaviour {
 	public IntVector2 size;
 	public RoomCell[,] tileGrid;
 	protected GameObject middle;
+	protected GameObject doorInstance;
 	public IntVector2 minSize;
 	public IntVector2 maxSize;
+	public GameObject doorPrefab;
 	public GameObject middlePrefab;
 	public IntVector2 middlePrefabGridSize;
 	public GameObject[] furniture;
@@ -158,7 +160,13 @@ public abstract class GenericRoom : MonoBehaviour {
 		// TODO : PUT DOORS ON WALLS
 		foreach (RoomCell door in doors) {
 			door.transform.GetChild(1).gameObject.GetComponent<WallControl>().door = true;
-			door.transform.GetChild(1).gameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
+			//door.transform.GetChild(1).gameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
+
+			doorInstance = Instantiate(doorPrefab) as GameObject;
+			doorInstance.transform.SetParent(door.transform.GetChild(1).gameObject.GetComponent<WallControl>().gameObject.transform);
+			doorInstance.transform.localPosition = new Vector3(0f, 0f, -0.05f);
+			doorInstance.transform.localRotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+			doorInstance.transform.localScale = new Vector3(0.1f, 0.1f, 0.3f);
 		}
 	return doors;
 	}// getDoors

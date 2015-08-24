@@ -10,6 +10,9 @@ public class CorridorCell : MonoBehaviour {
 	public IntVector2 coordinates;
 	// The material
 	public Material material;
+	// Door
+	public GameObject doorPrefab;
+	private GameObject doorInstance;
 	// The floor
 	private GameObject floor;
 	// The walls
@@ -67,7 +70,12 @@ public class CorridorCell : MonoBehaviour {
 				if(Random.Range(0, 100) < wallDoorProbability) {
 					// Generate new door
 					wall.GetComponent<WallControl>().door = true;
-					wall.GetComponent<MeshRenderer>().material.color = Color.blue;
+					doorInstance = Instantiate(doorPrefab) as GameObject;
+					doorInstance.transform.SetParent(wall.transform);
+					doorInstance.transform.localPosition = new Vector3(0f, 0f, -0.05f);
+					doorInstance.transform.localRotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+					doorInstance.transform.localScale = new Vector3(0.1f, 0.1f, 0.3f);
+					//wall.GetComponent<MeshRenderer>().material.color = Color.blue;
 				}
 			}// if
 		}// foreach

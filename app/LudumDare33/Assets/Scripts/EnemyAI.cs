@@ -28,7 +28,6 @@ public class EnemyAI : MonoBehaviour {
 			if(Physics.Raycast(ray, out hit, (float)aggroRange)) {
 				if(hit.collider.gameObject.tag == "Player"){
 					// hit
-					Debug.Log("SHIT");
 					transform.LookAt(other.transform);
 					isFollowingPlayer = true;
 					lastPlayerPosition = other.transform.position;
