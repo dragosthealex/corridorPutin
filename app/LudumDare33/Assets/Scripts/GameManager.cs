@@ -28,10 +28,7 @@ public class GameManager : MonoBehaviour {
 		OLcanvas.gameObject.SetActive (false);
 		StartRoom = GameObject.FindGameObjectWithTag ("startroom");
 	}
-	
-	private void Update () {
 
-	}
 	private void BeginGame () {
 		Vector3 initialPutinPosition = startRoomInstance.transform.FindChild ("putin").transform.position;
 		Destroy (startRoomInstance.transform.FindChild ("putin").gameObject);
