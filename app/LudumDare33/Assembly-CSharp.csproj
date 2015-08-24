@@ -70,7 +70,6 @@
      <Compile Include="Assets\Scripts\UI\LevelDIsplay.cs" />
      <Compile Include="Assets\Scripts\UI\MaxHPDisplay.cs" />
      <Compile Include="Assets\Scripts\UI\SexDisp.cs" />
-     <Compile Include="Assets\Scripts\UI\StartMenu.cs" />
      <Compile Include="Assets\Scripts\UI\UI_functions.cs" />
      <Compile Include="Assets\Scripts\UI\XPSlider.cs" />
      <Compile Include="Assets\Scripts\Wall.cs" />

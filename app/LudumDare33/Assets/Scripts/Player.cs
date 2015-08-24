@@ -85,13 +85,7 @@ public class Player : MonoBehaviour {
 			nowTime = Time.time + delayTime;
 		}// if
 
-
-		if (Input.GetKey (KeyCode.Q)) {
-			FindObjectOfType<Camera> ().gameObject.transform.RotateAround (putinTrans.position, Vector3.up, -1f);
-		}
-		if (Input.GetKey (KeyCode.E)) {
-			FindObjectOfType<Camera> ().gameObject.transform.RotateAround (putinTrans.position, Vector3.up, 1f);
-		}
+	
 	}// update
 
 	private void Reload() {
