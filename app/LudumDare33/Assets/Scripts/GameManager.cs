@@ -7,10 +7,12 @@ public class GameManager : MonoBehaviour {
 	public Corridor corridorPrefab;
 	public ConferenceRoom conferenceRoomPrefab;
 	public Bar barPrefab;
+	public Bedroom bedroomPrefab;
 	public GameObject startRoomInstance;
 	public Camera initialCamera;
 	private Corridor corridorInstance;
 	private Bar barInstance;
+	private Bedroom bedroomInstance;
 	private ConferenceRoom conferenceRoomInstance;
 	// Player prefab
 	public GameObject playerPF;
@@ -28,10 +30,7 @@ public class GameManager : MonoBehaviour {
 		OLcanvas.gameObject.SetActive (false);
 		StartRoom = GameObject.FindGameObjectWithTag ("startroom");
 	}
-	
-	private void Update () {
 
-	}
 	private void BeginGame () {
 		Vector3 initialPutinPosition = startRoomInstance.transform.FindChild ("putin").transform.position;
 		Destroy (startRoomInstance.transform.FindChild ("putin").gameObject);
@@ -52,7 +51,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void newRoom() {
-		int randomRoom = Random.Range (0, 3);
+		int randomRoom = Random.Range (0, 4);
 		Transform putinTransform = FindObjectOfType<TurnPutin> ().gameObject.transform;
 		switch (randomRoom) {
 		case 0:
@@ -77,6 +76,13 @@ public class GameManager : MonoBehaviour {
 			     barInstance.GetSpawn ().x, 0f, barInstance.GetSpawn ().z);
 			putinTransform.localPosition = new Vector3(0f, -14f, 0f);
 			FindObjectOfType<Player> ().room = barInstance;
+			break;
+		case 3:
+			bedroomInstance = Instantiate (bedroomPrefab) as Bedroom;
+			FindObjectOfType<Player> ().gameObject.transform.position = new Vector3( 
+                 bedroomInstance.GetSpawn ().x, 0f, bedroomInstance.GetSpawn ().z);
+			putinTransform.localPosition = new Vector3(0f, 0f, 0f);
+			FindObjectOfType<Player> ().room = bedroomInstance;
 			break;
 		}
 	}

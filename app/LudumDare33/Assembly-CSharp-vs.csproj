@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\ALexCamMovement.cs" />
      <Compile Include="Assets\Scripts\Bar.cs" />
+     <Compile Include="Assets\Scripts\Bedroom.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
      <Compile Include="Assets\Scripts\ConferenceRoom.cs" />
      <Compile Include="Assets\Scripts\Corridor.cs" />
@@ -57,6 +58,8 @@
      <Compile Include="Assets\Scripts\DroppableLoot.cs" />
      <Compile Include="Assets\Scripts\EnemyAI.cs" />
      <Compile Include="Assets\Scripts\EnemyBullet.cs" />
+     <Compile Include="Assets\Scripts\EventPool.cs" />
+     <Compile Include="Assets\Scripts\EventRoom.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GenericRoom.cs" />
      <Compile Include="Assets\Scripts\IntVector2.cs" />

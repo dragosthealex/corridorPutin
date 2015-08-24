@@ -7,6 +7,9 @@ public class ALexCamMovement : MonoBehaviour {
 	public float actualSensitivity;
 	public float speed;
 
+
+
+
 	public GameObject camera;
 
 public float fixer = 1f;
@@ -15,6 +18,7 @@ public float fixer = 1f;
 		camera = FindObjectOfType<Camera>().gameObject;
 		actualSensitivity = sensitivity;
 	}
+
 
 	void FixedUpdate (){
 
