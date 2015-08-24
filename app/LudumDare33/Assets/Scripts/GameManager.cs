@@ -28,13 +28,13 @@ public class GameManager : MonoBehaviour {
 	private void Update () {
 
 	}
-	
 	private void BeginGame () {
 		Vector3 initialPutinPosition = startRoomInstance.transform.FindChild ("putin").transform.position;
 		Destroy (startRoomInstance.transform.FindChild ("putin").gameObject);
 		Destroy (startRoomInstance.transform.FindChild ("ak47").gameObject);
+		OLcanvas.gameObject.SetActive (true);
 		player = Instantiate(playerPF,initialPutinPosition, Quaternion.identity) as GameObject;
-		//OLcanvas.gameObject.SetActive (true);
+
 		Destroy (initialCamera.gameObject);
 	}
 	
