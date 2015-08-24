@@ -9,7 +9,6 @@ public class ALexCamMovement : MonoBehaviour {
 	public GameObject camera;
 
 	void Awake (){
-
 		camera = FindObjectOfType<Camera>().gameObject;
 	}
 
@@ -19,7 +18,7 @@ public class ALexCamMovement : MonoBehaviour {
 
 		camera.transform.Rotate(-Input.GetAxis("Mouse Y")*sensitivity,0f,0f);
 
-		transform.Translate(Input.GetAxis("Horizontal")*speed,0f,Input.GetAxis("Vertical")*speed);
+		transform.Translate(-Input.GetAxis("Horizontal")*speed,0f,-Input.GetAxis("Vertical")*speed);
 
 		camera.transform.rotation = Quaternion.Euler(new Vector3(Mathf.Clamp(camera.transform.rotation.eulerAngles.x,25f,70f),camera.transform.rotation.eulerAngles.y,0f));
 	}
