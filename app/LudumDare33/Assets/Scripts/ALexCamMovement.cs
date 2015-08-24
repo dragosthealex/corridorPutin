@@ -9,12 +9,15 @@ public class ALexCamMovement : MonoBehaviour {
 
 	public GameObject camera;
 
+public float fixer = 1f;
+
 	void Awake (){
 		camera = FindObjectOfType<Camera>().gameObject;
 		actualSensitivity = sensitivity;
 	}
 
 	void FixedUpdate (){
+
 
 		transform.Rotate(0f,Input.GetAxis("Mouse X")*actualSensitivity,0f);
 		camera.transform.Rotate (-Input.GetAxis ("Mouse Y") * actualSensitivity, 0f, 0f);
