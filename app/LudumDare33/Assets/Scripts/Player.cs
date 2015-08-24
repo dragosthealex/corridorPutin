@@ -63,11 +63,12 @@ public class Player : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.C)) {
 			isPanelactive = !isPanelactive;
 		}
-		if (isPanelactive)
-			panel.canvasGroup.alpha = 1f;
-		else
-			panel.canvasGroup.alpha = 0f;
-
+		if (GameObject.FindWithTag ("canvas")) {
+			if (isPanelactive)
+				panel.canvasGroup.alpha = 1f;
+			else
+				panel.canvasGroup.alpha = 0f;
+		}
 		// Reload
 		if (Input.GetKeyDown (KeyCode.R) && ammo > 0 && mag < 30) {
 			Reload ();
