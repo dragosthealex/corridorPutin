@@ -3,6 +3,8 @@ using System.Collections;
 
 public class EnemyAI : MonoBehaviour {
 
+	public Player player;
+
 	// Use this for initialization
 	public int hp;
 	public int dmg;
@@ -16,9 +18,67 @@ public class EnemyAI : MonoBehaviour {
 	private Vector3 lastPlayerPosition;
 	private Vector3 origin;
 
+	public Transform bar1;
+	public GameObject bul;
+	public GameObject bulIns;
+
+	public float timeNow,timeDelay;
+
 	void Awake () {
+
+		player = FindObjectOfType<Player>();
+
 		gameObject.GetComponent<SphereCollider> ().radius = aggroRange;
 		origin = transform.position;
+	}
+
+	void Update (){
+
+		if (hp <= 0){
+			player.GiveXP(givenXp);
+			player.ammo+=Random.Range(0,100);
+			Destroy(this.gameObject);
+		}
+	}
+	/*
+.     .       .  .   . .   .   . .    +  .
+  .     .  :     .    .. :. .___---------___.
+       .  .   .    .  :.:. _".^ .^ ^.  '.. :"-_. .
+    .  :       .  .  .:../:            . .^  :.:\.
+        .   . :: +. :.:/: .   .    .        . . .:\
+ .  :    .     . _ :::/:               .  ^ .  . .:\
+  .. . .   . - : :.:./.                        .  .:\
+  .      .     . :..|:                    .  .  ^. .:|
+    .       . : : ..||        .                . . !:|
+  .     . . . ::. ::\(                           . :)/
+ .   .     : . : .:.|. ######              .#######::|
+  :.. .  :-  : .:  ::|.#######           ..########:|
+ .  .  .  ..  .  .. :\ ########          :######## :/
+  .        .+ :: : -.:\ ########       . ########.:/
+    .  .+   . . . . :.:\. #######       #######..:/
+      :: . . . . ::.:..:.\           .   .   ..:/
+   .   .   .  .. :  -::::.\.       | |     . .:/
+      .  :  .  .  .-:.":.::.\             ..:/
+ .      -.   . . . .: .:::.:.\.           .:/
+.   .   .  :      : ....::_:..:\   ___.  :/
+   .   .  .   .:. .. .  .: :.:.:\       :/
+     +   .   .   : . ::. :.:. .:.|\  .:/|
+     .         +   .  .  ...:: ..|  --.:|
+.      . . .   .  .  . ... :..:.."(  ..)"
+ .   .       .      :  .   .: ::/  .  .::\
+*/
+	void OnCollisionEnter (Collision other){
+		if (other.gameObject.tag  == "Bullet"){
+			Debug.Log(player.damage*player.ExtraDMG);
+			hp -= player.damage*player.ExtraDMG;
+		}
+	}
+
+
+	public void Shooooooooot (){
+		bulIns = Instantiate(bul,bar1.position,Quaternion.identity) as GameObject;
+		bulIns.GetComponent<EnemyBullet>().damage = dmg;
+		bulIns.GetComponent<Rigidbody>().AddForceAtPosition(bar1.transform.right*50,transform.position,ForceMode.Impulse);
 	}
 
 	void OnTriggerStay(Collider other) {
@@ -28,6 +88,13 @@ public class EnemyAI : MonoBehaviour {
 			if(Physics.Raycast(ray, out hit, (float)aggroRange)) {
 				if(hit.collider.gameObject.tag == "Player"){
 					// hit
+
+					//shoot here somewhererere
+					if (timeNow < Time.time){
+					Shooooooooot();
+						timeNow = Time.time + timeDelay;
+					}
+
 					transform.LookAt(other.transform);
 					isFollowingPlayer = true;
 					lastPlayerPosition = other.transform.position;

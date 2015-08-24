@@ -27,6 +27,8 @@ public class Player : MonoBehaviour {
 	public int ExtraDMG;
 	public int SexAppeal;
 
+	public int damage;
+
 	public CharPanel panel;
 	public bool isPanelactive = false;
 	public Camera cam;
@@ -42,7 +44,7 @@ public class Player : MonoBehaviour {
 		XPtoLVL = 100;
 		maxHP = 100;
 		currentHP = maxHP;
-		ExtraDMG = 0;
+		//ExtraDMG = 0;
 		SexAppeal = 0;
 	}
 	
