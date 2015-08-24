@@ -104,9 +104,14 @@ public class Player : MonoBehaviour {
 		currentXP += amount;
 		if (currentXP >= XPtoLVL) {
 			currentXP -= XPtoLVL;
-			level ++;
-			XPtoLVL *= 2;
+			LevelUp();
 		}
+	}
+	public void LevelUp(){
+		level++;
+		ExtraDMG += 5;
+		maxHP += 5;
+		XPtoLVL =(int)(XPtoLVL*1.5);
 	}
 	public void DamagePlayer(int amount) {
 		if (armor >= amount)
