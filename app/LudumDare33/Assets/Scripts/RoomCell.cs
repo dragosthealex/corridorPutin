@@ -11,7 +11,7 @@ public class RoomCell : MonoBehaviour {
 	// The floor
 	private GameObject floor;
 	// If empty
-	private bool empty = true;
+	public bool empty = true;
 	
 	// Use this for initialization
 	void Awake () {

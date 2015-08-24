@@ -12,9 +12,7 @@ public class EnemyBullet : MonoBehaviour {
 
 	void OnCollisionEnter (Collision other){
 
-		Debug.Log(other.gameObject.name);
-
 		if (other.gameObject.tag == "Player")
-			other.gameObject.GetComponent<Player>().DamagePlayer(damage);
+			FindObjectOfType<Player>().DamagePlayer(damage);
 	}
 }

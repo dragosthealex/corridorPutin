@@ -49,9 +49,9 @@ public abstract class GenericRoom : MonoBehaviour {
 			middle.transform.position = middleCell.transform.position + new Vector3 (5f, 0f, 5f);
 			middle.transform.SetParent (this.transform);
 			GetCellAt (new IntVector2 (size.x / 2, size.z / 2)).setFull ();
-			GetCellAt (new IntVector2 (size.x / 2, size.z / 2 + 1)).setFull ();
-			GetCellAt (new IntVector2 (size.x / 2 + 1, size.z / 2)).setFull ();
-			GetCellAt (new IntVector2 (size.x / 2 + 1, size.z / 2 + 1)).setFull ();
+			GetCellAt (new IntVector2 (size.x / 2, size.z / 2 - 1)).setFull ();
+			GetCellAt (new IntVector2 (size.x / 2 - 1, size.z / 2)).setFull ();
+			GetCellAt (new IntVector2 (size.x / 2 - 1, size.z / 2 - 1)).setFull ();
 			// Fill with furniture
 			
 			// Fill with NPCs
@@ -221,6 +221,7 @@ public abstract class GenericRoom : MonoBehaviour {
 					// If spawn enemies
 					if(enemyProbability > Random.Range(0, 100)){
 						// Spawn enemy
+						Debug.Log (enemyPrefabs.Length);
 						enemy = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)]) as GameObject;
 						enemy.transform.position = GetCellAt(new IntVector2(i, j)).transform.position;
 						enemy.transform.SetParent(this.gameObject.transform);

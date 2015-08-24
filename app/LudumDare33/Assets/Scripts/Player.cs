@@ -28,6 +28,7 @@ public class Player : MonoBehaviour {
 	public int SexAppeal;
 
 	public int damage;
+	public AudioClip painSound;
 
 	public CharPanel panel;
 	public bool isPanelactive = false;
@@ -106,7 +107,7 @@ public class Player : MonoBehaviour {
 	}
 	public void LevelUp(){
 		level++;
-		ExtraDMG += 5;
+		ExtraDMG += 2;
 		maxHP += 5;
 		XPtoLVL =(int)(XPtoLVL*1.5);
 	}
@@ -115,5 +116,6 @@ public class Player : MonoBehaviour {
 			armor -= amount;
 		else 
 			currentHP -= (amount-armor);
+		AudioSource.PlayClipAtPoint (painSound, transform.position);
 	}//use when damaging player
 }
