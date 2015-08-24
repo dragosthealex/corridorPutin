@@ -16,34 +16,29 @@ public class EnemyAI : MonoBehaviour {
 	private Vector3 lastPlayerPosition;
 	private Vector3 origin;
 
+	public bool justDOIT = false;
+	public Collider playerCollider;
+
 	void Awake () {
 		gameObject.GetComponent<SphereCollider> ().radius = aggroRange;
 		origin = transform.position;
 	}
 
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	void FixedUpdate (){
 
-	void OnTriggerStay (Collider other) {
-		if (other.gameObject.tag == "Player") {
-			ray = new Ray(transform.position, (other.transform.position - transform.position));
+		if (justDOIT){
+			ray = new Ray(transform.position, (playerCollider.transform.position - transform.position));
 			Debug.DrawRay(ray.origin, ray.direction*100, Color.red);
 			if(Physics.Raycast(ray, out hit, (float)aggroRange)) {
 				if(hit.collider.gameObject.tag == "Player"){
 					// hit
 					Debug.Log("SHIT");
-					transform.LookAt(other.transform);
+					transform.LookAt(playerCollider.transform);
 					isFollowingPlayer = true;
-					lastPlayerPosition = other.transform.position;
+					lastPlayerPosition = playerCollider.transform.position;
 					// Move towards player
-					if(ranged && Vector3.Distance(transform.position, other.transform.position) > 5) {
-						transform.position = Vector3.MoveTowards(transform.position, other.transform.position, Time.deltaTime * moveSpeed);
+					if(ranged && Vector3.Distance(transform.position, playerCollider.transform.position) > 5) {
+						transform.position = Vector3.MoveTowards(transform.position, playerCollider.transform.position, Time.deltaTime * moveSpeed);
 					}
 				} else if(isFollowingPlayer && transform.position != lastPlayerPosition){
 					transform.position = Vector3.MoveTowards(transform.position, lastPlayerPosition, Time.deltaTime * moveSpeed);
@@ -51,6 +46,18 @@ public class EnemyAI : MonoBehaviour {
 					isFollowingPlayer = false;
 				}
 			}
+
+		}
+	}
+
+	void OnTriggerExit(Collider other){
+		justDOIT = false;
+	}
+
+	void OnTriggerEnter(Collider other) {
+		if (other.gameObject.tag == "Player") {
+			playerCollider = other;
+			justDOIT = true;
 		}// if
 	}// on trigger stay
 }
