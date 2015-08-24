@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\CorridorDirection.cs" />
      <Compile Include="Assets\Scripts\CorridorDirections.cs" />
      <Compile Include="Assets\Scripts\EnemyAI.cs" />
+     <Compile Include="Assets\Scripts\EnemyBullet.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GenericRoom.cs" />
      <Compile Include="Assets\Scripts\IntVector2.cs" />

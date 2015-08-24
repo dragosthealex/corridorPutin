@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour {
 	public GameObject OLcanvas;
 	public GameObject StartRoom;
 	private void Start () {
+
+
 		OLcanvas = GameObject.FindGameObjectWithTag ("canvas");
 		OLcanvas.gameObject.SetActive (false);
 		StartRoom = GameObject.FindGameObjectWithTag ("startroom");
@@ -37,6 +39,7 @@ public class GameManager : MonoBehaviour {
 
 		Destroy (initialCamera.gameObject);
 
+		Cursor.lockState = CursorLockMode.Locked;
 	}
 	
 	private void RestartGame () {
