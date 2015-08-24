@@ -13,9 +13,9 @@ public class WallControl : MonoBehaviour {
 		
 	}
 
-	void OnCollisionEnter (Collision col)
+	void OnCollisionStay (Collision col)
 	{
-		if(door && col.gameObject.name == "putin")
+		if(door && col.gameObject.name == "putin" && Input.GetKey(KeyCode.E))
 		{
 			FindObjectOfType<Player>().gameObject.transform.position = new Vector3(1000f, 1000f, 1000f);
 			if(GameObject.Find("Corridor(Clone)")) {

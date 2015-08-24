@@ -34,6 +34,12 @@ public class Player : MonoBehaviour {
 	public bool isPanelactive = false;
 	public Camera cam;
 
+	public GameObject vodkaPrefab;
+	public GameObject ammoPrefab;
+	public GameObject armorPrefab;
+
+	public GenericRoom room;
+
 	// Use this for initialization
 	void Start () {
 
@@ -67,10 +73,16 @@ public class Player : MonoBehaviour {
 			isPanelactive = !isPanelactive;
 		}
 		if (GameObject.FindWithTag ("canvas")) {
-			if (isPanelactive)
+			if (isPanelactive) {
 				panel.canvasGroup.alpha = 1f;
-			else
+				Cursor.lockState = CursorLockMode.None;
+				Cursor.visible = true;
+			}
+			else {
 				panel.canvasGroup.alpha = 0f;
+				Cursor.lockState = CursorLockMode.Locked;
+				Cursor.visible = false;
+			}
 		}
 		// Reload
 		if (Input.GetKeyDown (KeyCode.R) && ammo > 0 && mag < 30) {

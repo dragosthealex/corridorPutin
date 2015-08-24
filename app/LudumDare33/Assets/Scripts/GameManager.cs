@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour {
 		Destroy (initialCamera.gameObject);
 
 		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
 	}
 	
 	private void RestartGame () {
@@ -61,18 +62,21 @@ public class GameManager : MonoBehaviour {
 			FindObjectOfType<Player> ().gameObject.transform.position = new Vector3(
 				corridorInstance.GetSpawn ().x, 0f, corridorInstance.GetSpawn ().z);
 			putinTransform.localPosition = new Vector3(0f, 0f, 0f);
+			FindObjectOfType<Player> ().room = corridorInstance;
 			break;
 		case 1:
 			conferenceRoomInstance = Instantiate (conferenceRoomPrefab) as ConferenceRoom;
 			FindObjectOfType<Player> ().gameObject.transform.position = new Vector3( 
 			    conferenceRoomInstance.GetSpawn ().x, 0f, conferenceRoomInstance.GetSpawn ().z);
 			putinTransform.localPosition = new Vector3(0f, -14f, 0f);
+			FindObjectOfType<Player> ().room = conferenceRoomInstance;
 			break;
 		case 2:
 			barInstance = Instantiate (barPrefab) as Bar;
 			FindObjectOfType<Player> ().gameObject.transform.position = new Vector3( 
 			     barInstance.GetSpawn ().x, 0f, barInstance.GetSpawn ().z);
 			putinTransform.localPosition = new Vector3(0f, -14f, 0f);
+			FindObjectOfType<Player> ().room = barInstance;
 			break;
 		}
 	}

@@ -20,10 +20,15 @@ public class EnemyAI : MonoBehaviour {
 	private RaycastHit hit;
 	private Vector3 lastPlayerPosition;
 	private Vector3 origin;
+	private bool isDead = false;
 
 	public GameObject bar1;
 	public GameObject bul;
 	public GameObject bulIns;
+
+	private GameObject vodkaInstance;
+	private GameObject ammoInstance;
+	private GameObject armorInstance;
 
 	public float timeNow,timeDelay;
 
@@ -41,11 +46,13 @@ public class EnemyAI : MonoBehaviour {
 
 	void Update (){
 
-		if (hp <= 0){
-			player.GiveXP(givenXp);
-			player.ammo+=Random.Range(0,100);
-			AudioSource.PlayClipAtPoint(deathSound, transform.position);
-			Destroy(this.gameObject);
+		if (hp <= 0 && !isDead) {
+			player.GiveXP (givenXp);
+			AudioSource.PlayClipAtPoint (deathSound, transform.position);
+			dropLoot ();
+			isDead = true;
+		} else if (isDead) {
+			Destroy (this.gameObject);
 		}
 	}
 
@@ -100,4 +107,30 @@ public class EnemyAI : MonoBehaviour {
 			}
 		}// if
 	}// on trigger stay
+
+	public void dropLoot() {
+		switch (Random.Range (0, 1)) {
+		case 0:
+			vodkaInstance = Instantiate (player.vodkaPrefab) as GameObject;
+			vodkaInstance.transform.position = this.transform.position;
+			vodkaInstance.GetComponent<DroppableLoot>().SetQuantity(Random.Range(10, player.maxHP/2));
+			vodkaInstance.GetComponent<DroppableLoot>().SetType("vodka");
+			vodkaInstance.transform.SetParent(player.room.transform);
+			break;
+		case 1:
+			ammoInstance = Instantiate (player.ammoPrefab) as GameObject;
+			ammoInstance.transform.position = this.transform.position;
+			ammoInstance.GetComponent<DroppableLoot>().SetQuantity(Random.Range(10, 200));
+			ammoInstance.GetComponent<DroppableLoot>().SetType("ammo");
+			ammoInstance.transform.SetParent(player.room.transform);
+			break;
+		case 2:
+			armorInstance = Instantiate (player.armorPrefab) as GameObject;
+			armorInstance.transform.position = this.transform.position;
+			armorInstance.GetComponent<DroppableLoot>().SetQuantity(Random.Range(10, 200));
+			armorInstance.GetComponent<DroppableLoot>().SetType("armor");
+			armorInstance.transform.SetParent(player.room.transform);
+			break;
+		}
+	}// droploot
 }

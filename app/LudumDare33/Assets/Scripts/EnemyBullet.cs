@@ -12,7 +12,9 @@ public class EnemyBullet : MonoBehaviour {
 
 	void OnCollisionEnter (Collision other){
 
-		if (other.gameObject.tag == "Player")
-			FindObjectOfType<Player>().DamagePlayer(damage);
+		if (other.gameObject.tag == "Player") {
+			FindObjectOfType<Player> ().DamagePlayer (damage);
+			Destroy (this.gameObject);
+		}
 	}
 }
