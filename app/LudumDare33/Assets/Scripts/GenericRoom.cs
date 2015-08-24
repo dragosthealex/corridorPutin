@@ -7,7 +7,7 @@ public abstract class GenericRoom : MonoBehaviour {
 	//public RoomEvent[] roomEvents;
 	public IntVector2 size;
 	public RoomCell[,] tileGrid;
-	public GameObject middle;
+	protected GameObject middle;
 	public IntVector2 minSize;
 	public IntVector2 maxSize;
 	public GameObject middlePrefab;
