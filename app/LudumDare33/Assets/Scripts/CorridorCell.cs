@@ -14,6 +14,8 @@ public class CorridorCell : MonoBehaviour {
 	private GameObject floor;
 	// The walls
 	public GameObject[] walls = new GameObject[4];
+	// empty
+	private bool empty = true;
 
 	// Use this for initialization
 	void Awake () {
@@ -40,13 +42,6 @@ public class CorridorCell : MonoBehaviour {
 
 	// Rotate the cell
 	public void PointFromTo(CorridorDirection from, CorridorDirection to) {
-		Debug.Log("FROM:" + from + " TO:" + to);
-		Debug.Log ("STUFF: " + CorridorDirection.North);
-		Debug.Log ("walls[0]: " + walls [0]);
-		Debug.Log ("walls[1]: " + walls [1]);
-		Debug.Log ("walls[2]: " + walls [2]);
-		Debug.Log ("walls[3]: " + walls [3]);
-
 		if (from == CorridorDirection.North) {
 			walls [1].SetActive (false);
 		} else if (from == CorridorDirection.South) {
@@ -77,4 +72,16 @@ public class CorridorCell : MonoBehaviour {
 			}// if
 		}// foreach
 	}// point from to
+
+	public void setEmpty() {
+		empty = true;
+	}
+	
+	public void setFull() {
+		empty = false;
+	}
+	
+	public bool isEmpty() {
+		return empty;
+	}
 }

@@ -29,7 +29,6 @@ public float fixer = 1f;
 
 		// MEGA MASTER AWUSUM FIXs
 		if (camera.transform.localRotation.eulerAngles.y > 180f) {
-			Debug.Log("SHIT");
 			camera.transform.localRotation = Quaternion.Euler (camera.transform.rotation.eulerAngles.x, 175.5f, 0f); 
 		}
 	}

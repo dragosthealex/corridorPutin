@@ -10,6 +10,8 @@ public class RoomCell : MonoBehaviour {
 	public Material material;
 	// The floor
 	private GameObject floor;
+	// If empty
+	private bool empty = true;
 	
 	// Use this for initialization
 	void Awake () {
@@ -20,5 +22,17 @@ public class RoomCell : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	public void setEmpty() {
+		empty = true;
+	}
+
+	public void setFull() {
+		empty = false;
+	}
+
+	public bool isEmpty() {
+		return empty;
 	}
 }

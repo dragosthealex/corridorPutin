@@ -17,6 +17,13 @@ public abstract class GenericRoom : MonoBehaviour {
 	public RoomCell[] doors;
 	public IntVector2 spawn;
 	public GameObject wall;
+	public int enemyProbability;
+	public int npcProbability;
+	public GameObject[] enemyPrefabs;
+	protected GameObject enemy;
+	public GameObject[] neutralPrefabs;
+	protected GameObject neutral;
+
 
 	// Generates the grid
 	protected void GenerateGrid() {
@@ -33,7 +40,11 @@ public abstract class GenericRoom : MonoBehaviour {
 	}// Generate
 	
 	public RoomCell GetCellAt(IntVector2 coords) {
-		return tileGrid[coords.x, coords.z];
+		try {
+			return tileGrid[coords.x, coords.z];
+		} catch (System.Exception e) {
+			return null;
+		}
 	}// getcellat
 
 	protected void MakeWalls() {
@@ -155,4 +166,26 @@ public abstract class GenericRoom : MonoBehaviour {
 	public IntVector2 GetSpawn() {
 		return spawn;
 	}
+
+	// Spawn the npcs
+	public void spawnNPCs () {
+		for (int i=0; i<size.x; i++) {
+			for (int j=0; j<size.z; j++) {
+				// If spawn something
+				if (GetCellAt(new IntVector2(i, j)) != null && GetCellAt(new IntVector2(i, j)).isEmpty() && npcProbability > Random.Range (0, 100)) {
+					// If spawn enemies
+					if(enemyProbability > Random.Range(0, 100)){
+						// Spawn enemy
+						enemy = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)]) as GameObject;
+						enemy.transform.position = GetCellAt(new IntVector2(i, j)).transform.position;
+						enemy.transform.SetParent(this.gameObject.transform);
+					} else {
+						neutral = Instantiate(neutralPrefabs[Random.Range(0, neutralPrefabs.Length)]) as GameObject;
+						neutral.transform.position = GetCellAt(new IntVector2(i, j)).transform.position;
+						neutral.transform.SetParent(this.gameObject.transform);
+					}// else
+				}//if
+			}// for
+		}// for
+	}// spawn npcs
 }// class
