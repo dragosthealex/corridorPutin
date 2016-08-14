@@ -28,12 +28,10 @@ public class Player : MonoBehaviour {
 	public int XPtoLVL;
 	public int ExtraDMG;
 	public int SexAppeal;
-
 	public int damage;
+
 	public AudioClip painSound;
 
-	public CharPanel panel;
-	public bool isPanelactive = false;
 	public Camera cam;
 
 	public GameObject vodkaPrefab;
@@ -42,14 +40,16 @@ public class Player : MonoBehaviour {
 
 	public GenericRoom room;
 
-	public GameObject canvas_menu = null;
+	// The menu stuffs
+	public GameObject charPanel = null;
+	public bool charPanelActive = false;
+	public bool inventoryPanelActive = false; // for future stuffs
 
 	public bool[] weaponsEnabled;
 	[SerializeField]
 	public GameObject[] weapons;
 	public bool hasKnife = false;
 	private GameObject currentWeapon = null;
-	private GameObject canvas;
 	private int delay = 0;
 	private float cameraSensitivity;
 
@@ -59,7 +59,6 @@ public class Player : MonoBehaviour {
 
 	}
 	void Awake() {
-		panel = FindObjectOfType<CharPanel> ();
 		level = 1;
 		currentXP = 0;
 		XPtoLVL = 100;
@@ -76,8 +75,6 @@ public class Player : MonoBehaviour {
 
 		EquipWeapon (1);
 		hasKnife = false;
-
-		canvas = GameObject.FindWithTag ("canvas");
 	}
 	
 	// Update is called once per frame
@@ -85,8 +82,7 @@ public class Player : MonoBehaviour {
 		if (delay % 20 == 0) {
 			delay = 0;
 		}
-//		if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey (KeyCode.A) || Input.GetKey(KeyCode.D)) && !GetComponent<AudioSource>().isPlaying)
-//			GetComponent<AudioSource>().Play();
+
 		// XP slider test
 		if (Input.GetKeyDown (KeyCode.X))
 			GiveXP (10);
@@ -95,34 +91,46 @@ public class Player : MonoBehaviour {
 			armor = 100;
 		if (Input.GetKeyDown (KeyCode.F))
 			DamagePlayer (10);
-		//show character panel on C press
-		if (Input.GetKeyDown (KeyCode.C)) {
-			isPanelactive = !isPanelactive;
-		}
-		if (currentHP > 0 && !this.isPaused ()) {
+		
+		// If we still have health and the game is not paused, do stuffs
+		if (currentHP > 0 && !GameManager.instance.paused) {
 			this.doGameStuff ();
+			if (Input.GetKeyDown (KeyCode.C)) {
+				//show character panel on C press and pause
+				showCharPanel();
+				GameManager.instance.pauseGame ();
+			} else if (Input.GetKeyDown (KeyCode.P)) {
+				// Just pause the game
+				GameManager.instance.pauseGame ();
+			}
+		} else if (currentHP > 0) {
+			// Else we can unpause the game
+			// or switch different pannels
+			// We are either in pause, char panel or other panels
+			if (Input.GetKeyDown (KeyCode.C)) {
+				//show character panel on C press and unpause
+				hideCharPanel();
+				GameManager.instance.unPauseGame ();
+			} else if (Input.GetKeyDown (KeyCode.P)) {
+				// Just unpause the game
+				GameManager.instance.unPauseGame ();
+			}
 		}
 	}
 
-	public bool isPaused() {
-		if (canvas.active) {
-			if (isPanelactive) {
-				panel.canvasGroup.alpha = 1f;
-				Cursor.lockState = CursorLockMode.None;
-				Cursor.visible = true;
-				transform.FindChild ("putin").GetComponent<ALexCamMovement> ().actualSensitivity = 0;
-				// Paused, Don't shoot or do anything else
-				return true;
-			} else {
-				panel.canvasGroup.alpha = 0f;
-				Cursor.lockState = CursorLockMode.Locked;
-				Cursor.visible = false;
-				transform.FindChild ("putin").GetComponent<ALexCamMovement> ().actualSensitivity = cameraSensitivity;
-				// Not paused, Continue updating
-				return false;
-			}
-		}
-		return false;
+	private void showCharPanel() {
+		charPanelActive = true;
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
+		charPanel.SetActive (true);
+		transform.FindChild ("putin").GetComponent<ALexCamMovement> ().actualSensitivity = 0;
+	}
+	private void hideCharPanel() {
+		charPanelActive = false;
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
+		charPanel.SetActive (false);
+		transform.FindChild ("putin").GetComponent<ALexCamMovement> ().actualSensitivity = cameraSensitivity;
 	}
 
 	private void doGameStuff() {
@@ -229,8 +237,4 @@ public class Player : MonoBehaviour {
 
 		AudioSource.PlayClipAtPoint (painSound, transform.position);
 	}//use when damaging player
-
-	public void setPanelActive(bool value) {
-		this.isPanelactive = value;
-	}
 }

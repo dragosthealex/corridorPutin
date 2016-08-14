@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour {
 
 	// "level" = scene
 	public int level;
-	//
+	// Is game paused ?
+	public bool paused = false;
 
 	public Camera mainCam;
 	public GameObject OLcanvas;
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour {
 		// Assign delegate stuff
 		SceneManager.sceneLoaded += (scene, loadingMode) => {
 			level = SceneManager.GetActiveScene().buildIndex;
+			paused = false;
 			InitGame ();
 		};
 	}
@@ -85,10 +87,10 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void pauseGame() {
-		player.GetComponent<Player> ().setPanelActive (true);
+		paused = true;
 	}
 	public void unPauseGame() {
-		player.GetComponent<Player>().setPanelActive(false);
+		paused = false;
 	}
 
 

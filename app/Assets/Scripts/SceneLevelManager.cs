@@ -31,7 +31,15 @@ public class SceneLevelManager : MonoBehaviour {
 		// Instantiate player
 		GameManager.instance.player = Instantiate (GameManager.instance.playerPF, pos, rot) as GameObject;
 		// Instantiate canvas
-		GameManager.instance.player.GetComponent<Player>().canvas_menu = Instantiate(GameManager.instance.canvasMenuPF);
+		GameObject canvas_menu = Instantiate(GameManager.instance.canvasMenuPF);
+		GameObject charPanel = GameObject.Find("CharPanel");
+		// Assign to player and make canvas visible
+		GameManager.instance.player.GetComponent<Player> ().charPanel = charPanel;
+		charPanel.SetActive (false);
+
+		// Disable mouse
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
 	}
 
 	// Use this for initialization

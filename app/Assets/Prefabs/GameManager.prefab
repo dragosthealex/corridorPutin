@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e2979d681f205b46b8bb2e97a6e190c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  corridorPrefab: {fileID: 0}
+  corridorPrefab: {fileID: 196678, guid: ecc6a5410b7deed45897c33f27ca6cc2, type: 2}
   conferenceRoomPrefab: {fileID: 0}
   barPrefab: {fileID: 0}
   bedroomPrefab: {fileID: 0}
@@ -84,7 +84,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPF: {fileID: 194140, guid: cfb81b912752577478b6b7838243b770, type: 2}
   player: {fileID: 0}
+  canvasMenuPF: {fileID: 1000010530746680, guid: ebf482ed26ad637498ccdd4459813b95,
+    type: 2}
   level: 0
+  paused: 0
   mainCam: {fileID: 0}
   OLcanvas: {fileID: 0}
   StartRoom: {fileID: 0}

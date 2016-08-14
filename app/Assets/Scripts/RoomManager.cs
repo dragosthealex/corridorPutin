@@ -3,62 +3,69 @@ using System.Collections;
 
 public class RoomManager : MonoBehaviour {
 
-	public Corridor corridorPrefab;
-	public ConferenceRoom conferenceRoomPrefab;
-	public Bar barPrefab;
+	public GameObject corridorPrefab;
+	private Corridor corridorInstance;
+
+	public GameObject conferenceRoomPrefab;
+	private ConferenceRoom conferenceRoomInstance;
+
+	public GameObject barPrefab;
+	private Bar barInstance;
+
 	public Bedroom bedroomPrefab;
 	public Pool poolPrefab;
 	public GameObject startRoomInstance;
 	public Camera initialCamera;
 
-	private Corridor corridorInstance;
-	private Bar barInstance;
 	private Pool poolInstance;
 
 	private Bedroom bedroomInstance;
-	private ConferenceRoom conferenceRoomInstance;
 
+
+	private void putPutinInRoom(GenericRoom instance) {
+		Transform putinTransform = FindObjectOfType<TurnPutin> ().gameObject.transform;
+		Transform playerTransform = GameManager.instance.player.gameObject.transform;
+
+		playerTransform.position = new Vector3 (instance.GetSpawn ().x, 0f, instance.GetSpawn ().z);
+		putinTransform.localPosition = new Vector3 (0f, 0f, 0f);
+		GameManager.instance.player.GetComponent<Player> ().room = instance;
+	}
 
 	public void newRoom() {
 		int randomRoom = Random.Range (0, 5);
-		Transform putinTransform = FindObjectOfType<TurnPutin> ().gameObject.transform;
+
 		switch (randomRoom) {
 		case 0:
 			// Another corridor
-			corridorInstance = Instantiate (corridorPrefab) as Corridor;
-			corridorInstance.Generate();
-			FindObjectOfType<Player> ().gameObject.transform.position = new Vector3(
-				corridorInstance.GetSpawn ().x, 0f, corridorInstance.GetSpawn ().z);
-			putinTransform.localPosition = new Vector3(0f, 0f, 0f);
-			FindObjectOfType<Player> ().room = corridorInstance;
+			// Instantiate and generate the corridor
+			corridorInstance = Instantiate (corridorPrefab).GetComponent<Corridor> ();
+			corridorInstance.Generate ();
+			// Put putin in it
+			putPutinInRoom (corridorInstance);
 			break;
 		case 1:
-			conferenceRoomInstance = Instantiate (conferenceRoomPrefab) as ConferenceRoom;
-			FindObjectOfType<Player> ().gameObject.transform.position = new Vector3( 
-				conferenceRoomInstance.GetSpawn ().x, 0f, conferenceRoomInstance.GetSpawn ().z);
-			putinTransform.localPosition = new Vector3(0f, -14f, 0f);
-			FindObjectOfType<Player> ().room = conferenceRoomInstance;
+			// Instantiate
+			conferenceRoomInstance = Instantiate (conferenceRoomPrefab).GetComponent<ConferenceRoom>();
+			// Put putin in it
+			putPutinInRoom (conferenceRoomInstance);
 			break;
 		case 2:
-			barInstance = Instantiate (barPrefab) as Bar;
-			FindObjectOfType<Player> ().gameObject.transform.position = new Vector3( 
-				barInstance.GetSpawn ().x, 0f, barInstance.GetSpawn ().z);
-			putinTransform.localPosition = new Vector3(0f, -14f, 0f);
-			FindObjectOfType<Player> ().room = barInstance;
+			// Instantiate
+			barInstance = Instantiate (barPrefab).GetComponent<Bar> ();
+			// Put putin in it
+			putPutinInRoom (barInstance);
 			break;
 		case 3:
-			bedroomInstance = Instantiate (bedroomPrefab) as Bedroom;
-			FindObjectOfType<Player> ().gameObject.transform.position = new Vector3( 
-				bedroomInstance.GetSpawn ().x, 0f, bedroomInstance.GetSpawn ().z);
-			putinTransform.localPosition = new Vector3(0f, 0f, 0f);
-			FindObjectOfType<Player> ().room = bedroomInstance;
+			// Instantiate
+			bedroomInstance = Instantiate (bedroomPrefab).GetComponent<Bedroom> ();
+			// Put putin in it
+			putPutinInRoom (bedroomInstance);
 			break;
 		case 4:
-			poolInstance = Instantiate (poolPrefab) as Pool;
-			FindObjectOfType<Player> ().gameObject.transform.position = new Vector3( 
-				poolInstance.GetSpawn ().x, 0f, poolInstance.GetSpawn ().z);
-			putinTransform.localPosition = new Vector3(0f, 0f, 0f);
-			FindObjectOfType<Player> ().room = poolInstance;
+			// Instantiate
+			poolInstance = Instantiate (poolPrefab).GetComponent<Pool> ();
+			// Put putin in it
+			putPutinInRoom (poolInstance);
 			break;
 		}
 	}

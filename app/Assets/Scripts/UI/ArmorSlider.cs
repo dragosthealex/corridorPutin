@@ -8,7 +8,7 @@ public class ArmorSlider : MonoBehaviour {
 	public CanvasGroup canvasGroup;
 	// Use this for initialization
 	void Awake() {
-		canvasGroup = FindObjectOfType<CanvasGroup> ();
+		canvasGroup = GetComponent<CanvasGroup> ();
 	}
 	// Update is called once per frame
 	void Update () {

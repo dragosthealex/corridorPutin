@@ -99,7 +99,7 @@ public class EnemyAI : MonoBehaviour {
 	}
 
 	void OnTriggerStay(Collider other) {
-		if (other.gameObject.tag == "Player" && ! player.isPaused()) {
+		if (other.gameObject.tag == "Player" && ! GameManager.instance.paused) {
 			ray = new Ray(transform.position, (other.transform.position - transform.position));
 			if(Physics.Raycast(ray, out hit, (float)aggroRange)) {
 				if(hit.collider.gameObject.tag == "Player"){
