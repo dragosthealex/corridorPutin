@@ -14,4 +14,7 @@ public class UI_functions : MonoBehaviour {
 	public void Resume() {
 		gameManager.GetComponent<GameManager> ().unPauseGame ();
 	}
+	public void TestRoom() {
+		Application.LoadLevel (2);
+	}
 }
