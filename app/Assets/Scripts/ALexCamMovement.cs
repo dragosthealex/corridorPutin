@@ -4,9 +4,7 @@ using System.Collections;
 public class ALexCamMovement : MonoBehaviour {
 
 	public float sensitivity;
-	public float actualSensitivity;
 	public float speed;
-
 
 
 
@@ -16,15 +14,19 @@ public float fixer = 1f;
 
 	void Awake (){
 		camera = FindObjectOfType<Camera>().gameObject;
-		actualSensitivity = sensitivity;
 	}
 
 
-	void FixedUpdate (){
+	void FixedUpdate() {
+		if (!GameManager.instance.paused) {
+			MovePlayer ();
+		}
+	}
 
+	void MovePlayer (){
 
-		transform.Rotate(0f,Input.GetAxis("Mouse X")*actualSensitivity,0f);
-		camera.transform.Rotate (-Input.GetAxis ("Mouse Y") * actualSensitivity, 0f, 0f);
+		transform.Rotate(0f,Input.GetAxis("Mouse X")*sensitivity,0f);
+		camera.transform.Rotate (-Input.GetAxis ("Mouse Y") * sensitivity, 0f, 0f);
 
 		transform.Translate(-Input.GetAxis("Horizontal")*speed,0f,-Input.GetAxis("Vertical")*speed);
 

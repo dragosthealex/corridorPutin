@@ -288,7 +288,7 @@ GameObject:
   - 114: {fileID: 114000010433230156}
   - 114: {fileID: 114000012593858514}
   m_Layer: 5
-  m_Name: Options
+  m_Name: Restart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -860,8 +860,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114000012865621918}
-        m_MethodName: Quit
+      - m_Target: {fileID: 114000011973694198, guid: eb2686fe36cda4b47bda95f093002af3,
+          type: 2}
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1221,8 +1222,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114000012865621918}
-        m_MethodName: Resume
+      - m_Target: {fileID: 114000011973694198, guid: eb2686fe36cda4b47bda95f093002af3,
+          type: 2}
+        m_MethodName: resumeGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1584,8 +1586,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114000012865621918}
-        m_MethodName: Restart
+      - m_Target: {fileID: 114000011973694198, guid: eb2686fe36cda4b47bda95f093002af3,
+          type: 2}
+        m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -17,24 +17,10 @@ public class WallControl : MonoBehaviour {
 	{
 		if(door && col.gameObject.name == "putin" && Input.GetKey(KeyCode.E))
 		{
-			FindObjectOfType<Player>().gameObject.transform.position = new Vector3(1000f, 1000f, 1000f);
-			if(GameObject.Find("Corridor(Clone)")) {
-				Destroy(FindObjectOfType<Corridor>().gameObject);
-			}
-			if(GameObject.Find("ConferenceRoom(Clone)")) {
-				Destroy(FindObjectOfType<ConferenceRoom>().gameObject);
-			} 
-			if(GameObject.Find("StartRoom")) {
-				Destroy(GameObject.Find("StartRoom").gameObject);
-			} 
-			if(GameObject.Find("Bar(Clone)")) {
-				Destroy(GameObject.Find("Bar(Clone)").gameObject);
-			}
-			if(GameObject.Find("Bedroom(Clone)")) {
-				Destroy(GameObject.Find("Bedroom(Clone)").gameObject);
-			}
-			if(GameObject.Find("Pool(Clone)")) {
-				Destroy(GameObject.Find("Pool(Clone)").gameObject);
+			GameManager.instance.player.GetComponent<Player> ().gameObject.transform.position = 
+				new Vector3(1000f, 1000f, 1000f);
+			foreach(GameObject room in GameObject.FindGameObjectsWithTag("room")) {
+				Destroy(room);
 			}
 			GameManager.roomScript.newRoom();
 		}

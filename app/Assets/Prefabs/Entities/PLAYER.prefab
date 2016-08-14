@@ -2086,7 +2086,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24360366, guid: 84c0c011064f76f4299a500a3eb60915,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: e4950df215aa8b045b5f1e8b5b3eab40, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -2212,7 +2212,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivity: 5
-  actualSensitivity: 0
   speed: 0.4
   camera: {fileID: 0}
   fixer: 1
@@ -2303,13 +2302,15 @@ MonoBehaviour:
   SexAppeal: 0
   damage: 0
   painSound: {fileID: 8300000, guid: 707eae54e78c7f542a8f501e091a1178, type: 3}
-  panel: {fileID: 0}
-  isPanelactive: 0
+  reloadSound: {fileID: 8300000, guid: e4950df215aa8b045b5f1e8b5b3eab40, type: 3}
   cam: {fileID: 2045852}
   vodkaPrefab: {fileID: 119060, guid: 6a90fbcf54a39664ebd17c8eeabb90d0, type: 2}
   ammoPrefab: {fileID: 138836, guid: e127c2240145daa49a135183d032a120, type: 2}
   armorPrefab: {fileID: 148172, guid: b60559b07d051304ba1d21fcac6dee1c, type: 2}
   room: {fileID: 0}
+  charPanel: {fileID: 0}
+  charPanelActive: 0
+  inventoryPanelActive: 0
   weaponsEnabled: 0101
   weapons:
   - {fileID: 177638, guid: 69ef63e6b906edd48b87c026b76ba108, type: 2}

@@ -12,20 +12,18 @@ public class RoomManager : MonoBehaviour {
 	public GameObject barPrefab;
 	private Bar barInstance;
 
-	public Bedroom bedroomPrefab;
-	public Pool poolPrefab;
-	public GameObject startRoomInstance;
-	public Camera initialCamera;
-
-	private Pool poolInstance;
-
+	public GameObject bedroomPrefab;
 	private Bedroom bedroomInstance;
 
+	public GameObject poolPrefab;
+	private Pool poolInstance;
+
+	public Camera initialCamera;
 
 	private void putPutinInRoom(GenericRoom instance) {
 		Transform putinTransform = FindObjectOfType<TurnPutin> ().gameObject.transform;
 		Transform playerTransform = GameManager.instance.player.gameObject.transform;
-
+		// Assign putin position
 		playerTransform.position = new Vector3 (instance.GetSpawn ().x, 0f, instance.GetSpawn ().z);
 		putinTransform.localPosition = new Vector3 (0f, 0f, 0f);
 		GameManager.instance.player.GetComponent<Player> ().room = instance;

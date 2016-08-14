@@ -54,11 +54,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   corridorPrefab: {fileID: 196678, guid: ecc6a5410b7deed45897c33f27ca6cc2, type: 2}
-  conferenceRoomPrefab: {fileID: 0}
-  barPrefab: {fileID: 0}
-  bedroomPrefab: {fileID: 0}
-  poolPrefab: {fileID: 0}
-  startRoomInstance: {fileID: 0}
+  conferenceRoomPrefab: {fileID: 167546, guid: 3fe5ed9f307dac447b82eccb7c741595, type: 2}
+  barPrefab: {fileID: 186968, guid: 7d3e7884493ceb14795819f063d60d1b, type: 2}
+  bedroomPrefab: {fileID: 148612, guid: 74d608f3016604440b57930a581d96a3, type: 2}
+  poolPrefab: {fileID: 198184, guid: 88df3f810ea38b746a8dac2510dc3c32, type: 2}
   initialCamera: {fileID: 0}
 --- !u!114 &114000011331197686
 MonoBehaviour:

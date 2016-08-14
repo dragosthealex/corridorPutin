@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour {
 	public int level;
 	// Is game paused ?
 	public bool paused = false;
+	// Whether enemies are enabled
+	public bool enemies;
 
 	public Camera mainCam;
 	public GameObject OLcanvas;
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviour {
 	private void Awake () {
 		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
+		enemies = true;
 
 		// Enforce singleton
 		if (instance == null) {
@@ -78,27 +81,27 @@ public class GameManager : MonoBehaviour {
 		Application.Quit ();
 	}
 
+	public void GameOver() {
+		level = 2;
+		SceneManager.LoadScene (level);
+	}
+
 	void Update() {
-		// If deaded
-		if (player != null && player.GetComponent<Player> ().currentHP == 0) {
-			// Restart game
-			this.GameOver ();
-		}
+
 	}
 
 	public void pauseGame() {
 		paused = true;
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
 	}
 	public void unPauseGame() {
 		paused = false;
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
 	}
 
-
-
-	public void GameOver() {
-		musicPlayer.GetComponent<MusicPlayer> ().transitionTo (4);
-		Cursor.lockState = CursorLockMode.None;
-		Cursor.visible = true;
-		Application.LoadLevel (1);
+	public void resumeGame() {
+		GameManager.instance.player.GetComponent<Player> ().hideCharPanel ();
 	}
 }

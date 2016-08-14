@@ -94,7 +94,9 @@ public class Corridor : GenericRoom {
 		}// while
 
 		// Spawn the npcs
-		corridorSpawnNPCs ();
+		if (GameManager.instance.enemies) {
+			corridorSpawnNPCs ();
+		}
 	}// generate
 
 	// Create the first cell (speshal)

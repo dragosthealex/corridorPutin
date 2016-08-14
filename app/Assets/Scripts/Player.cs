@@ -30,7 +30,10 @@ public class Player : MonoBehaviour {
 	public int SexAppeal;
 	public int damage;
 
+	// Sound stuffs
 	public AudioClip painSound;
+	public AudioClip reloadSound;
+	private AudioSource source;
 
 	public Camera cam;
 
@@ -39,6 +42,7 @@ public class Player : MonoBehaviour {
 	public GameObject armorPrefab;
 
 	public GenericRoom room;
+	public GameObject currentRoom;
 
 	// The menu stuffs
 	public GameObject charPanel = null;
@@ -51,8 +55,6 @@ public class Player : MonoBehaviour {
 	public bool hasKnife = false;
 	private GameObject currentWeapon = null;
 	private int delay = 0;
-	private float cameraSensitivity;
-
 
 	// Use this for initialization
 	void Start () {
@@ -65,7 +67,6 @@ public class Player : MonoBehaviour {
 		maxHP = 100;
 		currentHP = maxHP;
 		ExtraDMG = 1;
-		cameraSensitivity = transform.FindChild("putin").GetComponent<ALexCamMovement>().sensitivity;
 
 		for (int i=0; i<weaponsEnabled.Length; i++) {
 			weaponsEnabled [i] = false;
@@ -75,6 +76,10 @@ public class Player : MonoBehaviour {
 
 		EquipWeapon (1);
 		hasKnife = false;
+
+		// Assign audio source
+		source = GetComponent<AudioSource>();
+		source.clip = null;
 	}
 	
 	// Update is called once per frame
@@ -97,7 +102,7 @@ public class Player : MonoBehaviour {
 			this.doGameStuff ();
 			if (Input.GetKeyDown (KeyCode.C)) {
 				//show character panel on C press and pause
-				showCharPanel();
+				showCharPanel ();
 				GameManager.instance.pauseGame ();
 			} else if (Input.GetKeyDown (KeyCode.P)) {
 				// Just pause the game
@@ -107,14 +112,17 @@ public class Player : MonoBehaviour {
 			// Else we can unpause the game
 			// or switch different pannels
 			// We are either in pause, char panel or other panels
-			if (Input.GetKeyDown (KeyCode.C)) {
-				//show character panel on C press and unpause
-				hideCharPanel();
-				GameManager.instance.unPauseGame ();
+			if (Input.GetKeyDown (KeyCode.C) && charPanelActive) {
+				//hide character panel on C press and unpause
+				hideCharPanel ();
+			} else if (Input.GetKeyDown (KeyCode.C)) {
+				showCharPanel ();
 			} else if (Input.GetKeyDown (KeyCode.P)) {
-				// Just unpause the game
-				GameManager.instance.unPauseGame ();
+				hideCharPanel ();
 			}
+		} else {
+			// Deaded
+			GameManager.instance.GameOver();
 		}
 	}
 
@@ -123,14 +131,14 @@ public class Player : MonoBehaviour {
 		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
 		charPanel.SetActive (true);
-		transform.FindChild ("putin").GetComponent<ALexCamMovement> ().actualSensitivity = 0;
+		GameManager.instance.pauseGame ();
 	}
-	private void hideCharPanel() {
+	public void hideCharPanel() {
 		charPanelActive = false;
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
 		charPanel.SetActive (false);
-		transform.FindChild ("putin").GetComponent<ALexCamMovement> ().actualSensitivity = cameraSensitivity;
+		GameManager.instance.unPauseGame ();
 	}
 
 	private void doGameStuff() {
@@ -202,7 +210,9 @@ public class Player : MonoBehaviour {
 		}
 	}
 	private void Reload() {
-		GetComponent<AudioSource> ().Play ();
+		source.clip = reloadSound;
+		source.Play ();
+
 		int ammoToSubstract = 30 - mag;
 		mag = ammo >= ammoToSubstract ? 30 : mag + ammo;
 		ammo = ammo >= ammoToSubstract ? ammo - ammoToSubstract : 0;
@@ -234,7 +244,8 @@ public class Player : MonoBehaviour {
 		} else {
 			currentHP = 0;
 		}
+		source.clip = painSound;
+		source.Play ();
 
-		AudioSource.PlayClipAtPoint (painSound, transform.position);
 	}//use when damaging player
 }

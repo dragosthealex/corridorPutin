@@ -44,7 +44,6 @@ public abstract class GenericRoom : MonoBehaviour {
 			doors = GetDoors ();
 			// Generate the middle
 			RoomCell middleCell = GetCellAt (new IntVector2 (size.x / 2 -1, size.z / 2 -1));
-			float floorY = gameObject.transform.position.y;
 			middle = Instantiate (middlePrefab) as GameObject;
 			middle.transform.position = middleCell.transform.position + new Vector3 (5f, 0f, 5f);
 			middle.transform.SetParent (this.transform);
@@ -55,7 +54,9 @@ public abstract class GenericRoom : MonoBehaviour {
 			// Fill with furniture
 			
 			// Fill with NPCs
-			spawnNPCs ();
+			if (GameManager.instance.enemies) {
+				spawnNPCs ();
+			}
 		}
 	}
 
@@ -78,6 +79,7 @@ public abstract class GenericRoom : MonoBehaviour {
 		try {
 			return tileGrid[coords.x, coords.z];
 		} catch (System.Exception e) {
+			print(e);
 			return null;
 		}
 	}// getcellat
