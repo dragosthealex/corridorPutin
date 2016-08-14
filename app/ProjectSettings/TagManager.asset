@@ -15,6 +15,7 @@ TagManager:
   - gameManager
   - musicPlayer
   - test_room
+  - initial_spawn
   layers:
   - Default
   - TransparentFX

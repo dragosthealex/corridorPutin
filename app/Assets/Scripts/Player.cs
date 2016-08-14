@@ -42,6 +42,8 @@ public class Player : MonoBehaviour {
 
 	public GenericRoom room;
 
+	public GameObject canvas_menu = null;
+
 	public bool[] weaponsEnabled;
 	[SerializeField]
 	public GameObject[] weapons;
@@ -50,6 +52,7 @@ public class Player : MonoBehaviour {
 	private GameObject canvas;
 	private int delay = 0;
 	private float cameraSensitivity;
+
 
 	// Use this for initialization
 	void Start () {

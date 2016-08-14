@@ -21,9 +21,24 @@ public class MusicPlayer : MonoBehaviour {
 
 	private float timeTransition;
 	private float timeQuarterNote;
+
+	// Instance
+	public static MusicPlayer instance = null;
 	
 	// Use this for initialization
 	void Awake () {
+		// Enforce singleton
+		if (instance == null) {
+			// If instance does not exist set this as instance
+			instance = this;
+		} else if (instance != this) {
+			// If instance exists and it is not this one, destroy this
+			// to prevent duplicates
+			Destroy (gameObject);
+		}
+		// Prevent this being destroyed
+		DontDestroyOnLoad(gameObject);
+
 		timeQuarterNote = 60 / bpm;
 		timeTransition = 4 * timeQuarterNote;
 
