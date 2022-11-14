@@ -165,7 +165,7 @@ public class Player : MonoBehaviour {
 
 			if (Input.GetKey (KeyCode.Mouse0) && nowTime < Time.time && mag > 0) {
 
-				bulIns = Instantiate (bul, currentWeapon.transform.FindChild ("bar").transform.position, Quaternion.identity) as GameObject;
+				bulIns = Instantiate (bul, currentWeapon.transform.Find ("bar").transform.position, Quaternion.identity) as GameObject;
 				bulIns.GetComponent<Rigidbody> ().AddForceAtPosition (bar.transform.right * 100, transform.position, ForceMode.Impulse);
 				mag--;
 				nowTime = Time.time + delayTime;
@@ -194,11 +194,11 @@ public class Player : MonoBehaviour {
 				Destroy(currentWeapon.gameObject);
 			currentWeapon = weapons [value];
 			currentWeapon = Instantiate(currentWeapon) as GameObject;
-			currentWeapon.transform.SetParent(transform.FindChild("putin").transform.FindChild("weapon").transform);
+			currentWeapon.transform.SetParent(transform.Find("putin").transform.Find("weapon").transform);
 			currentWeapon.transform.localPosition = Vector3.zero;
 			currentWeapon.transform.localRotation = Quaternion.Euler(Vector3.zero);
 			if(currentWeapon.GetComponent<Weapon>().name != "knife") {
-				bar = currentWeapon.transform.FindChild("bar").transform;
+				bar = currentWeapon.transform.Find("bar").transform;
 			}
 			else {
 				currentWeapon.transform.localRotation = Quaternion.Euler(new Vector3(0f, 90f, 0f));
